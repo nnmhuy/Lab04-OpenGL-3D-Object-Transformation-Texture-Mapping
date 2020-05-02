@@ -8,6 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		E4736A1B245D59E20065868B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4736A1A245D59E20065868B /* main.cpp */; };
+		E4736A23245D59EE0065868B /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4736A22245D59EE0065868B /* OpenGL.framework */; };
+		E4736A25245D59F40065868B /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4736A24245D59F40065868B /* GLUT.framework */; };
+		E4736A28245D5B330065868B /* Config.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4736A26245D5B320065868B /* Config.cpp */; };
+		E4736A2B245D7AFF0065868B /* ColorMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4736A29245D7AFF0065868B /* ColorMenu.cpp */; };
+		E4736A2F245D82A80065868B /* DrawMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4736A2D245D82A80065868B /* DrawMenu.cpp */; };
+		E4736A32245D83200065868B /* Point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4736A30245D831F0065868B /* Point.cpp */; };
+		E4736A39245D8C370065868B /* EllipseMidpoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4736A33245D8C360065868B /* EllipseMidpoint.cpp */; };
+		E4736A3B245D8C370065868B /* Object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4736A37245D8C370065868B /* Object.cpp */; };
+		E4736A3E245D8DBB0065868B /* Rectangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4736A3C245D8DBB0065868B /* Rectangle.cpp */; };
+		E4736A59245DC1B70065868B /* Polygon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4736A57245DC1B70065868B /* Polygon.cpp */; };
+		E4736A5C245DD49F0065868B /* RGBColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4736A5A245DD49E0065868B /* RGBColor.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +36,26 @@
 /* Begin PBXFileReference section */
 		E4736A17245D59E20065868B /* Lab02_Object_Coloring */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Lab02_Object_Coloring; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4736A1A245D59E20065868B /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		E4736A22245D59EE0065868B /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		E4736A24245D59F40065868B /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
+		E4736A26245D5B320065868B /* Config.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Config.cpp; sourceTree = "<group>"; };
+		E4736A27245D5B330065868B /* Config.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Config.hpp; sourceTree = "<group>"; };
+		E4736A29245D7AFF0065868B /* ColorMenu.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ColorMenu.cpp; sourceTree = "<group>"; };
+		E4736A2A245D7AFF0065868B /* ColorMenu.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ColorMenu.hpp; sourceTree = "<group>"; };
+		E4736A2D245D82A80065868B /* DrawMenu.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DrawMenu.cpp; sourceTree = "<group>"; };
+		E4736A2E245D82A80065868B /* DrawMenu.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DrawMenu.hpp; sourceTree = "<group>"; };
+		E4736A30245D831F0065868B /* Point.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Point.cpp; sourceTree = "<group>"; };
+		E4736A31245D831F0065868B /* Point.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Point.hpp; sourceTree = "<group>"; };
+		E4736A33245D8C360065868B /* EllipseMidpoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EllipseMidpoint.cpp; sourceTree = "<group>"; };
+		E4736A34245D8C360065868B /* Object.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Object.hpp; sourceTree = "<group>"; };
+		E4736A36245D8C360065868B /* EllipseMidpoint.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EllipseMidpoint.hpp; sourceTree = "<group>"; };
+		E4736A37245D8C370065868B /* Object.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Object.cpp; sourceTree = "<group>"; };
+		E4736A3C245D8DBB0065868B /* Rectangle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Rectangle.cpp; sourceTree = "<group>"; };
+		E4736A3D245D8DBB0065868B /* Rectangle.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Rectangle.hpp; sourceTree = "<group>"; };
+		E4736A57245DC1B70065868B /* Polygon.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Polygon.cpp; sourceTree = "<group>"; };
+		E4736A58245DC1B70065868B /* Polygon.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Polygon.hpp; sourceTree = "<group>"; };
+		E4736A5A245DD49E0065868B /* RGBColor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RGBColor.cpp; sourceTree = "<group>"; };
+		E4736A5B245DD49F0065868B /* RGBColor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RGBColor.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +63,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4736A25245D59F40065868B /* GLUT.framework in Frameworks */,
+				E4736A23245D59EE0065868B /* OpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +76,7 @@
 			children = (
 				E4736A19245D59E20065868B /* Lab02_Object_Coloring */,
 				E4736A18245D59E20065868B /* Products */,
+				E4736A21245D59EE0065868B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -57,9 +91,36 @@
 		E4736A19245D59E20065868B /* Lab02_Object_Coloring */ = {
 			isa = PBXGroup;
 			children = (
+				E4736A29245D7AFF0065868B /* ColorMenu.cpp */,
+				E4736A2A245D7AFF0065868B /* ColorMenu.hpp */,
+				E4736A5A245DD49E0065868B /* RGBColor.cpp */,
+				E4736A5B245DD49F0065868B /* RGBColor.hpp */,
+				E4736A26245D5B320065868B /* Config.cpp */,
+				E4736A27245D5B330065868B /* Config.hpp */,
+				E4736A2D245D82A80065868B /* DrawMenu.cpp */,
+				E4736A2E245D82A80065868B /* DrawMenu.hpp */,
+				E4736A33245D8C360065868B /* EllipseMidpoint.cpp */,
+				E4736A36245D8C360065868B /* EllipseMidpoint.hpp */,
 				E4736A1A245D59E20065868B /* main.cpp */,
+				E4736A37245D8C370065868B /* Object.cpp */,
+				E4736A34245D8C360065868B /* Object.hpp */,
+				E4736A30245D831F0065868B /* Point.cpp */,
+				E4736A31245D831F0065868B /* Point.hpp */,
+				E4736A57245DC1B70065868B /* Polygon.cpp */,
+				E4736A58245DC1B70065868B /* Polygon.hpp */,
+				E4736A3C245D8DBB0065868B /* Rectangle.cpp */,
+				E4736A3D245D8DBB0065868B /* Rectangle.hpp */,
 			);
 			path = Lab02_Object_Coloring;
+			sourceTree = "<group>";
+		};
+		E4736A21245D59EE0065868B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E4736A24245D59F40065868B /* GLUT.framework */,
+				E4736A22245D59EE0065868B /* OpenGL.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -119,7 +180,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4736A39245D8C370065868B /* EllipseMidpoint.cpp in Sources */,
+				E4736A3B245D8C370065868B /* Object.cpp in Sources */,
+				E4736A2F245D82A80065868B /* DrawMenu.cpp in Sources */,
+				E4736A3E245D8DBB0065868B /* Rectangle.cpp in Sources */,
 				E4736A1B245D59E20065868B /* main.cpp in Sources */,
+				E4736A5C245DD49F0065868B /* RGBColor.cpp in Sources */,
+				E4736A59245DC1B70065868B /* Polygon.cpp in Sources */,
+				E4736A32245D83200065868B /* Point.cpp in Sources */,
+				E4736A2B245D7AFF0065868B /* ColorMenu.cpp in Sources */,
+				E4736A28245D5B330065868B /* Config.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
