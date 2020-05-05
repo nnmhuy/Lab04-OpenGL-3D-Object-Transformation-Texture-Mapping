@@ -74,19 +74,37 @@ void createMenu(void){
 // Called by GLUT library when the window has changed size
 void ChangeSize(GLsizei w, GLsizei h)
 {
+    cout << "Handle change size: " << w << " " << h << endl;
     // Set Viewport to window dimensions
     // glViewport(x, y, w, h) => (x,y): lower-left point of viewport; (w, h): width, height
-    glViewport(0, 0, w, h);
+    
+    glMatrixMode(GL_MODELVIEW);
+    glViewport(0, 0, 2*w, 2*h);
+
     // Reset coordinate system
     glMatrixMode(GL_PROJECTION);
-    
-    glLoadIdentity();
 
+    glLoadIdentity();
+    cout << w << " " << h << "\n";
     glOrtho(0, w, h, 0, 1, -1);
     // all future transformation will affect model
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
+    
+    
+    
+    int width, height;
+    width = glutGet(GLUT_WINDOW_WIDTH);
+    height = glutGet(GLUT_WINDOW_HEIGHT);
+    cout << " Window size: " << width << " " << height << endl;
+    
+    int* p = new int[4];
+    glGetIntegerv(GL_VIEWPORT, p);
+    cout << "Viewport: " << p[0] << " " << p[1] << " " << p[2] << " " << p[3] << endl;
+    delete [] p;
+    
 }
+
 
 Point ColorMenu::p;
 int ColorMenu::currentColor = 1;
@@ -100,13 +118,12 @@ int main(int argc, char * argv[]) {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGBA);
     glutInitWindowSize(Config::MAX_COORDINATE, Config::MAX_COORDINATE);
-    window = glutCreateWindow("Coloring Objects");
-    
+    glutCreateWindow("Coloring Objects");
+
     SetupRC();
     createMenu();
-    glutDisplayFunc(RenderScreen);
     glutReshapeFunc(ChangeSize);
-
+    glutDisplayFunc(RenderScreen);
     glutMainLoop();
     return 0;
 }

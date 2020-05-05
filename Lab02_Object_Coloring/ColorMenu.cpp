@@ -17,17 +17,18 @@ const RGBColor colorsTable[3] = {
 const int dx[4] = {-1, 0, 1, 0};
 const int dy[4] = {0, -1, 0, 1};
 
-float * Ptr = new float [3 * (Config::MAX_COORDINATE + 1) *(Config::MAX_COORDINATE + 1)];
+float * Ptr;
 
 void ColorMenu::getMouseClickPosition(int button, int state, int x, int y) {
     if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
-        glutMouseFunc(NULL);
         cout << "Color from point: " << x << " " << y << endl;
         ColorMenu::p = Point(x, y);
         executeColor();
     } else {
         glutMouseFunc(NULL);
-        cout << "Cancelled color" << endl;
+        if (button != GLUT_LEFT_BUTTON) {
+            cout << "Cancelled color" << endl;
+        }
     }
 }
 
@@ -41,11 +42,10 @@ void ColorMenu::handleToggleMenu(int color){
 }
 
 void ColorMenu::executeColor() {
+    Ptr = new float [3 * (Config::MAX_COORDINATE + 1) *(Config::MAX_COORDINATE + 1)];
     glReadPixels(0, 0, Config::MAX_COORDINATE, Config::MAX_COORDINATE, GL_RGB, GL_FLOAT, Ptr);
     RGBColor oldColor = getPixel(p);
     RGBColor newColor = colorsTable[currentColor];
-
-    cout << "finished get all colors" << endl;
     
     queue <Point> que;
     putPixel(p, newColor);
@@ -65,12 +65,12 @@ void ColorMenu::executeColor() {
             }
         }
     }
-
     glFlush();
-    cout << "done coloring" << endl;
+    delete []Ptr;
 }
 
 RGBColor ColorMenu::getPixel(Point &p) {
+//    int d = ((Config::MAX_COORDINATE - p.y) * Config::MAX_COORDINATE + p.x ) * 3;
     int d = ((Config::MAX_COORDINATE - p.y) * Config::MAX_COORDINATE + p.x ) * 3;
     return RGBColor(Ptr[d], Ptr[d + 1], Ptr[d + 2]);
 }

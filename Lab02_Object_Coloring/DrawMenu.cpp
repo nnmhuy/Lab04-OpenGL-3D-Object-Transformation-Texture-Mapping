@@ -33,6 +33,16 @@ void DrawMenu::getEndPoint(int button, int state, int x, int y) {
 }
 
 void DrawMenu::startDrawing() {
+    int width, height;
+    width = glutGet(GLUT_WINDOW_WIDTH);
+    height = glutGet(GLUT_WINDOW_HEIGHT);
+    cout << " Window size: " << width << " " << height << endl;
+    
+    int* p = new int[4];
+    glGetIntegerv(GL_VIEWPORT, p);
+    cout << "Viewport: " << p[0] << " " << p[1] << " " << p[2] << " " << p[3] << endl;
+    delete [] p;
+    
     Object * object = Object::constructObject(DrawMenu::shape);
     object->getParameters(DrawMenu::start_point, DrawMenu::end_point);
     object->draw();
