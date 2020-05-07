@@ -55,7 +55,7 @@ void DrawMenu::handleToggleMenu(int shape){
     cout << "DRAW MENU" << endl;
     DrawMenu::shape = shape;
     
-    if (shape == 3) {
+    if (shape == 0) {
         Polygon polygon;
         polygon.getParameters(Point(0, 0), Point(0, 0));
         polygon.points = Polygon::currentPoints;

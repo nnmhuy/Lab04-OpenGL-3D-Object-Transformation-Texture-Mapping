@@ -27,7 +27,7 @@ void RenderScreen(void) {
     // temporary ignore for not deleting drawn shapes
     // Clear the window with current clearing color
     // glClear(GL_COLOR_BUFFER_BIT);
-    cout << "Re-render window" << endl;
+    // cout << "Re-render window" << endl;
     // Flush drawing commands
     // glFlush();
 }
@@ -54,7 +54,8 @@ void createMenu(void){
     int draw_submenu_id = glutCreateMenu(DrawMenu::handleToggleMenu);
     glutAddMenuEntry("Ellipse", 1);
     glutAddMenuEntry("Rectangle", 2);
-    glutAddMenuEntry("Polygon", 3);
+    glutAddMenuEntry("Circle", 3);
+    glutAddMenuEntry("Polygon", 0);
     
     int color_submenu_id = glutCreateMenu(ColorMenu::handleToggleMenu);
     glutAddMenuEntry("Red", 1);

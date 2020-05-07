@@ -9,18 +9,20 @@
 #include "Object.hpp"
 #include "EllipseMidpoint.hpp"
 #include "Rectangle.hpp"
+#include "Circle.hpp"
 #include "Polygon.hpp"
 
 Object* Object::constructObject(int type) {
     switch (type) {
+        case 0:
+            return new Polygon();
         case 1:
             return new EllipseMidpoint();
             break;
         case 2:
             return new Rectangle();
-            break;
         case 3:
-            return new Polygon();
+            return new Circle();
         default:
             return NULL;
     }
