@@ -13,9 +13,9 @@
 #include <stdio.h>
 #include <fstream>
 #include <vector>
-#include <OpenGL/gl.h>
-#include <OpenGl/glu.h>
-#include <GLUT/GLUT.h>
+
+#include <GL/glut.h>
+
 #include "Point.hpp"
 
 using namespace std;

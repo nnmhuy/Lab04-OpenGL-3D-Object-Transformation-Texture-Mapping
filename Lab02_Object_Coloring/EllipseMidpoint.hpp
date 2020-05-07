@@ -14,6 +14,8 @@
 #include <iostream>
 #include <math.h>
 
+#include <GL/glut.h>
+
 #include "Object.hpp"
 #include "Point.hpp"
 

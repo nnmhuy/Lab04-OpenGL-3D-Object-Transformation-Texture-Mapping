@@ -15,8 +15,10 @@ void DrawMenu::getStartPoint(int button, int state, int x, int y) {
         cout << "Shape start point: " << x << " " << y << endl;
         DrawMenu::start_point = Point(x, y);
     } else {
-        glutMouseFunc(NULL);
-        cout << "Cancelled" << endl;
+        if (button != GLUT_LEFT_BUTTON) {
+            glutMouseFunc(NULL);
+            cout << "Cancelled" << endl;
+        }
     }
 }
 

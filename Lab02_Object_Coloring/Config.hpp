@@ -2,9 +2,7 @@
 #define Config_hpp
 
 #include <stdio.h>
-#include <OpenGL/gl.h>
-#include <OpenGl/glu.h>
-#include <GLUT/GLUT.h>
+#include <GL/glut.h>
 
 class Config {
 public:

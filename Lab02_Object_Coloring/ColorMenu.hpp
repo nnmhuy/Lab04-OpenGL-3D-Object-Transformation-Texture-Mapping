@@ -14,9 +14,7 @@
 #include <iostream>
 #include <queue>
 
-#include <OpenGL/gl.h>
-#include <OpenGL/glu.h>
-#include <GLUT/GLUT.h>
+#include <GL/glut.h>
 
 #include "Config.hpp"
 #include "Point.hpp"

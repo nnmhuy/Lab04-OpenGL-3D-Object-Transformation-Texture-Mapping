@@ -13,9 +13,7 @@
 #include <stdio.h>
 #include <iostream>
 
-#include <OpenGL/gl.h>
-#include <OpenGL/glu.h>
-#include <GLUT/GLUT.h>
+#include <GL/glut.h>
 
 #include "Point.hpp"
 #include "Object.hpp"

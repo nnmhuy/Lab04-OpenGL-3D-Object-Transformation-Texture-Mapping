@@ -10,9 +10,7 @@
 #include <iostream>
 #include <fstream>
 
-#include <OpenGL/gl.h>
-#include <OpenGL/glu.h>
-#include <GLUT/GLUT.h>
+#include <GL/glut.h>
 
 #include "Config.hpp"
 #include "Point.hpp"
@@ -28,7 +26,7 @@ int value;
 void RenderScreen(void) {
     // Clear the window with current clearing color
     glClear(GL_COLOR_BUFFER_BIT);
-    
+    cout << "Re-render window" << endl;
     // Flush drawing commands
     glFlush();
 }
@@ -48,7 +46,7 @@ void mainMenu(int num){
     } else {
         value = num;
     }
-    glutPostRedisplay();
+    // glutPostRedisplay();
 }
 
 void createMenu(void){
@@ -79,7 +77,7 @@ void ChangeSize(GLsizei w, GLsizei h)
     // glViewport(x, y, w, h) => (x,y): lower-left point of viewport; (w, h): width, height
     
     glMatrixMode(GL_MODELVIEW);
-    glViewport(0, 0, 2*w, 2*h);
+    glViewport(0, 0, w, h);
 
     // Reset coordinate system
     glMatrixMode(GL_PROJECTION);
@@ -90,19 +88,6 @@ void ChangeSize(GLsizei w, GLsizei h)
     // all future transformation will affect model
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-    
-    
-    
-    int width, height;
-    width = glutGet(GLUT_WINDOW_WIDTH);
-    height = glutGet(GLUT_WINDOW_HEIGHT);
-    cout << " Window size: " << width << " " << height << endl;
-    
-    int* p = new int[4];
-    glGetIntegerv(GL_VIEWPORT, p);
-    cout << "Viewport: " << p[0] << " " << p[1] << " " << p[2] << " " << p[3] << endl;
-    delete [] p;
-    
 }
 
 

@@ -21,12 +21,13 @@ float * Ptr;
 
 void ColorMenu::getMouseClickPosition(int button, int state, int x, int y) {
     if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
+        glutMouseFunc(NULL);
         cout << "Color from point: " << x << " " << y << endl;
         ColorMenu::p = Point(x, y);
         executeColor();
     } else {
-        glutMouseFunc(NULL);
         if (button != GLUT_LEFT_BUTTON) {
+            glutMouseFunc(NULL);
             cout << "Cancelled color" << endl;
         }
     }

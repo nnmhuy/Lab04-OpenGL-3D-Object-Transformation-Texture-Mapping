@@ -11,9 +11,8 @@
 
 #include <stdio.h>
 #include <fstream>
-#include <OpenGL/gl.h>
-#include <OpenGl/glu.h>
-#include <GLUT/GLUT.h>
+
+#include <GL/glut.h>
 
 using namespace std;
 
