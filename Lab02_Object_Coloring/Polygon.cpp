@@ -10,11 +10,11 @@
 
 void Polygon::getParameters(Point start_point, Point end_point) {
     cout << "Drawing polygon" << endl;
-    glutDetachMenu(GLUT_RIGHT_BUTTON);
     glutMouseFunc(handleInsertPoint);
 }
 
 void Polygon::handleInsertPoint(int button, int state, int x, int y) {
+    glutDetachMenu(GLUT_RIGHT_BUTTON);
     if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
         currentPoints.push_back(Point(x, y));
         int n = (int) currentPoints.size();

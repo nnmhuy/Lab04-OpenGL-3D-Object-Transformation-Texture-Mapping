@@ -25,10 +25,10 @@ int value;
 
 void RenderScreen(void) {
     // Clear the window with current clearing color
-    glClear(GL_COLOR_BUFFER_BIT);
+    // glClear(GL_COLOR_BUFFER_BIT);
     cout << "Re-render window" << endl;
     // Flush drawing commands
-    glFlush();
+    // glFlush();
 }
 
 //  Set up the rendering state, set only once before rendering
@@ -46,7 +46,7 @@ void mainMenu(int num){
     } else {
         value = num;
     }
-    // glutPostRedisplay();
+    //glutPostRedisplay();
 }
 
 void createMenu(void){
