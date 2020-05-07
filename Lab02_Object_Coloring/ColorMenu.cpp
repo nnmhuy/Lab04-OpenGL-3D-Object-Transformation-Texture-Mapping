@@ -43,8 +43,8 @@ void ColorMenu::handleToggleMenu(int color){
 }
 
 void ColorMenu::executeColor() {
-    Ptr = new float [3 * (Config::MAX_COORDINATE + 1) *(Config::MAX_COORDINATE + 1)];
-    glReadPixels(0, 0, Config::MAX_COORDINATE, Config::MAX_COORDINATE, GL_RGB, GL_FLOAT, Ptr);
+    Ptr = new float [3 * (Config::WIDTH + 1) *(Config::HEIGHT + 1)];
+    glReadPixels(0, 0, Config::WIDTH, Config::HEIGHT, GL_RGB, GL_FLOAT, Ptr);
     RGBColor oldColor = getPixel(p);
     RGBColor newColor = colorsTable[currentColor];
     
@@ -58,7 +58,7 @@ void ColorMenu::executeColor() {
             Point F;
             F.x = f.x + dx[i];
             F.y = f.y + dy[i];
-            if (F.x < 0 || F.x > Config::MAX_COORDINATE || F.y < 0 || F.y > Config::MAX_COORDINATE) continue;
+            if (F.x < 0 || F.x > Config::WIDTH || F.y < 0 || F.y > Config::HEIGHT) continue;
 
             if (getPixel(F) == oldColor) {
                 putPixel(F, newColor);
@@ -71,8 +71,7 @@ void ColorMenu::executeColor() {
 }
 
 RGBColor ColorMenu::getPixel(Point &p) {
-//    int d = ((Config::MAX_COORDINATE - p.y) * Config::MAX_COORDINATE + p.x ) * 3;
-    int d = ((Config::MAX_COORDINATE - p.y) * Config::MAX_COORDINATE + p.x ) * 3;
+    int d = ((Config::HEIGHT - p.y) * Config::WIDTH + p.x ) * 3;
     return RGBColor(Ptr[d], Ptr[d + 1], Ptr[d + 2]);
 }
 
@@ -82,7 +81,7 @@ void ColorMenu::putPixel(Point &p, RGBColor &color) {
     ptr[1] = color.green;
     ptr[2] = color.blue;
     
-    int d = ((Config::MAX_COORDINATE - p.y) * Config::MAX_COORDINATE + p.x ) * 3;
+    int d = ((Config::HEIGHT - p.y) * Config::WIDTH + p.x ) * 3;
     Ptr[d] = color.red;
     Ptr[d + 1] = color.green;
     Ptr[d + 2] = color.blue;

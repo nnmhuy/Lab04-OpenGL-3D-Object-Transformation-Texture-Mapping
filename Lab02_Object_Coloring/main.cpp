@@ -24,6 +24,7 @@ int window;
 int value;
 
 void RenderScreen(void) {
+    // temporary ignore for not deleting drawn shapes
     // Clear the window with current clearing color
     // glClear(GL_COLOR_BUFFER_BIT);
     cout << "Re-render window" << endl;
@@ -83,9 +84,13 @@ void ChangeSize(GLsizei w, GLsizei h)
     glMatrixMode(GL_PROJECTION);
 
     glLoadIdentity();
-    cout << w << " " << h << "\n";
+
     glOrtho(0, w, h, 0, 1, -1);
     // all future transformation will affect model
+
+    Config::WIDTH = w;
+    Config::HEIGHT = h;
+
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 }
@@ -98,11 +103,13 @@ Point DrawMenu::start_point;
 Point DrawMenu::end_point;
 vector <Point> Polygon::currentPoints;
 int Config::main_menu_id;
+int Config::WIDTH = 0;
+int Config::HEIGHT = 0;
 
 int main(int argc, char * argv[]) {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGBA);
-    glutInitWindowSize(Config::MAX_COORDINATE, Config::MAX_COORDINATE);
+    glutInitWindowSize(Config::ORIGINAL_WIDTH, Config::ORIGINAL_HEIGHT);
     glutCreateWindow("Coloring Objects");
 
     SetupRC();
