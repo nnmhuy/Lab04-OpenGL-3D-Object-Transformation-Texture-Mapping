@@ -10,14 +10,10 @@
 
 void Circle::getParameters(Point start_point, Point end_point){
     radius = min(abs(start_point.x - end_point.x), abs(start_point.y - end_point.y)) / 2;
-    int difference = (abs(start_point.x - end_point.x) - abs(start_point.y - end_point.y)) / 2;
-    center.x = (start_point.x + end_point.x) / 2;
-    center.y = (start_point.y + end_point.y) / 2;
-    if (difference > 0) {
-        center.x -= difference;
-    } else {
-        center.y -= difference;
-    }
+    int signX = (end_point.x - start_point.x) / abs(end_point.x - start_point.x);
+    int signY = (end_point.y - start_point.y) / abs(end_point.y - start_point.y);
+    center.x = start_point.x + signX * radius;
+    center.y = start_point.y + signY * radius;
 }
 
 void Circle::circleSymmetric8(GLint x, GLint y) {

@@ -10,6 +10,7 @@
 #include "EllipseMidpoint.hpp"
 #include "Rectangle.hpp"
 #include "Circle.hpp"
+#include "Star.hpp"
 #include "Polygon.hpp"
 
 Object* Object::constructObject(int type) {
@@ -23,6 +24,8 @@ Object* Object::constructObject(int type) {
             return new Rectangle();
         case 3:
             return new Circle();
+        case 4:
+            return new Star();
         default:
             return NULL;
     }
