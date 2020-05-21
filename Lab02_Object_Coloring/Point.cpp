@@ -11,12 +11,13 @@
 Point::Point(GLint x, GLint y) {
     this->x = x;
     this->y = y;
+    this->z = 0;
 }
 
 ifstream& operator >> (ifstream &input, Point &point)
 {
     input >> point.x;
     input >> point.y;
-
+    point.z = 0;
     return input;
 }

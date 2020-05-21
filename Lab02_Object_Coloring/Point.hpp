@@ -18,7 +18,7 @@ using namespace std;
 
 class Point {
 public:
-    GLint x, y;
+    GLint x, y, z;
     friend ifstream &operator >> (ifstream &input, Point &point);
     Point() = default;
     Point(GLint x, GLint y);
