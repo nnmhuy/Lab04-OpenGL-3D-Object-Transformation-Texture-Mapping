@@ -25,6 +25,7 @@ public:
     Point center;
     vector <Point> base_points;
     int alpha = 0; // rotate angle, use for drawScreen
+    double sScale = 1;
     static vector<Object*> objects;
     static Object* constructObject(int type);
     static int getClickedObjectIndex(Point p);

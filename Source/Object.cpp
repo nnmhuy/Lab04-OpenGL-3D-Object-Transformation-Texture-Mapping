@@ -55,6 +55,7 @@ void Object::translate(int dx, int dy) {
 }
 
 void Object::scale(double sx, double sy) {
+    sScale *= sx;
     for (int i = 0; i < (int)base_points.size(); ++i) {
         base_points[i].scale(center, sx, sy);
     }

@@ -81,7 +81,7 @@ void createMenu(void){
     Config::main_menu_id = glutCreateMenu(mainMenu);
     glutAddSubMenu("Draw", draw_submenu_id);
     // glutAddSubMenu("Color", color_submenu_id);
-    glutAddSubMenu("Select", select_submenu_id);
+    glutAddSubMenu("Affine transform", select_submenu_id);
     glutAddMenuEntry("Exit", 0);
     
     glutAttachMenu(GLUT_RIGHT_BUTTON);
