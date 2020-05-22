@@ -122,6 +122,7 @@ Point DrawMenu::end_point;
 Point AffineTransformMenu::p;
 int AffineTransformMenu::currentObjectIndex = -1;
 vector <Point> Polygon::currentPoints;
+Object * Polygon::drawingPolygon;
 Point Polygon::top_left, Polygon::bottom_right;
 vector <Object*> Object::objects;
 int Config::main_menu_id;

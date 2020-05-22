@@ -23,6 +23,7 @@ class Polygon : public Object {
 public:
     static Point top_left, bottom_right;
     static vector <Point> currentPoints;
+    static Object * drawingPolygon;
     void getParameters(Point start_point, Point end_point) override;
     void draw() override;
     void drawScreen() override;

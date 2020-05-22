@@ -47,9 +47,8 @@ void DrawMenu::handleToggleMenu(int shape){
     
     if (shape == 0) {
         Object *polygon = new Polygon();
+        Polygon::drawingPolygon = polygon;
         polygon->getParameters(Point(0, 0), Point(0, 0));
-        polygon->base_points = Polygon::currentPoints;
-        Polygon::currentPoints.clear();
         Object::objects.push_back(polygon);
     } else {
         glutMouseFunc(getStartPoint);

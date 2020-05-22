@@ -16,35 +16,16 @@ void Polygon::getParameters(Point start_point, Point end_point) {
 void Polygon::handleInsertPoint(int button, int state, int x, int y) {
     glutDetachMenu(GLUT_RIGHT_BUTTON);
     if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
-        currentPoints.push_back(Point(x, y));
-        int n = (int) currentPoints.size();
-        if (n > 1) {
-            glColor3f(1.0f, 1.0f, 1.0f);
-            glBegin(GL_LINES); // Select line as the primitive
-                glVertex2i(currentPoints[n - 2].x, currentPoints[n - 2].y);
-                glVertex2i(x, y);
-            glEnd(); // Done drawing line
-            // copy screens -> draw -> swap buffer
-            glFlush();
-        } else {
-            // initialize top_left and bottom_right
+        drawingPolygon->base_points.push_back(Point(x, y));
+        int n = (int) drawingPolygon->base_points.size();
+        if (n == 0) {
+        // initialize top_left and bottom_right
             top_left.x = bottom_right.x = x;
             top_left.y = bottom_right.y = y;
         }
     }
     if (button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN) { // end drawing polygon
-        currentPoints.push_back(Point(x, y));
-        int n = (int) currentPoints.size();
-        if (n > 1) {
-            glColor3f(1.0f, 1.0f, 1.0f);
-            glBegin(GL_LINES); // Select line as the primitive
-                glVertex2i(currentPoints[n - 2].x, currentPoints[n - 2].y);
-                glVertex2i(x, y);
-                glVertex2i(x, y);
-                glVertex2i(currentPoints[0].x, currentPoints[0].y);
-            glEnd(); // Done drawing line
-            glFlush();
-        }
+        drawingPolygon->base_points.push_back(Point(x, y));
         glutMouseFunc(NULL);
         glutSetMenu(Config::main_menu_id);
         glutAttachMenu(GLUT_RIGHT_BUTTON);
@@ -55,6 +36,8 @@ void Polygon::handleInsertPoint(int button, int state, int x, int y) {
     top_left.y = max(top_left.y, y);
     bottom_right.x = max(bottom_right.x, x);
     bottom_right.y = min(bottom_right.y, y);
+
+    glutPostRedisplay();
 }
 
 void Polygon::draw() {
