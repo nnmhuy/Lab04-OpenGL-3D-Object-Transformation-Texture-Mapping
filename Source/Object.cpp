@@ -38,10 +38,10 @@ Object* Object::constructObject(int type) {
     return NULL;
 }
 
-int getClickedObjectIndex(Point p) {
-    int n = objects.size();
+int Object::getClickedObjectIndex(Point p) {
+    int n = Object::objects.size();
     for (int i = n - 1; i >= 0; --i) {
-        if (objects[i]->isPointInside(p)) return i;
+        if (Object::objects[i]->isPointInside(p)) return i;
     }
     return -1;
 }
@@ -56,7 +56,7 @@ void Object::translate(int dx, int dy) {
 
 void Object::scale(double sx, double sy) {
     for (int i = 0; i < (int)base_points.size(); ++i) {
-        base_points[i].scale(dx, dy);
+        base_points[i].scale(sx, sy);
     }
 }
 
@@ -66,15 +66,15 @@ void Object::rotate(int alpha) {
     }
 }
 
-bool isPointInside(Point point) {
+bool Object::isPointInside(Point point) {
     bool isInside = false;
     int n = base_points.size();
     for (int i = 0; i < n; ++i) {
-        j = (i + 1) % n;
+        int j = (i + 1) % n;
         if ((base_points[i].y > point.y) != (base_points[j].y > point.y)
             && (point.x < 
                 (base_points[j].x - base_points[i].x) * (point.y - base_points[i].y) 
-                / (base_points[j].y - base_points[i].y) + base_points[i].x) {
+                / (base_points[j].y - base_points[i].y) + base_points[i].x)) {
                 isInside = !isInside;
             }
     }

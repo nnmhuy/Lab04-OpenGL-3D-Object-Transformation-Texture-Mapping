@@ -22,7 +22,7 @@ void Rectangle::draw() {
     cout << "Drawing rectangle" << endl;
     base_points.push_back(Point(top_left.x, top_left.y));
     base_points.push_back(Point(bottom_right.x, top_left.y));
-    base_points.push_back(Point((bottom_right.x, bottom_right.y));
+    base_points.push_back(Point(bottom_right.x, bottom_right.y));
     base_points.push_back(Point(top_left.x, bottom_right.y));
 }
 

@@ -24,8 +24,8 @@ public:
     void getParameters(Point start_point, Point end_point) override;
     void draw() override;
     void drawScreen() override;
-    bool isPointInside(Point point) override;
-    void scale(double sx, double sy) override;
+    bool isPointInside(Point point);
+    void scale(double sx, double sy);
     void circleSymmetric8(GLint x, GLint y);
 };
 

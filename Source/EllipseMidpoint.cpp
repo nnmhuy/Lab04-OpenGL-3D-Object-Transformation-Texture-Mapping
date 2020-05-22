@@ -21,10 +21,10 @@ void EllipseMidpoint::ellipseSymmetric4(GLint x, GLint y) {
     // glVertex2i(x + center.x, -y + center.y);
     // glVertex2i(-x + center.x, y + center.y);
     // glVertex2i(-x + center.x, -y + center.y);
-    base_points.push_back(x + center.x, y + center.y));
-    base_points.push_back(x + center.x, -y + center.y));
-    base_points.push_back(-x + center.x, y + center.y));
-    base_points.push_back(-x + center.x, -y + center.y));
+    base_points.push_back(Point(x + center.x, y + center.y));
+    base_points.push_back(Point(x + center.x, -y + center.y));
+    base_points.push_back(Point(-x + center.x, y + center.y));
+    base_points.push_back(Point(-x + center.x, -y + center.y));
 }
 
 

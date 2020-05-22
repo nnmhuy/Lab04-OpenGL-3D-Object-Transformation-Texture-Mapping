@@ -29,7 +29,7 @@ public:
     static int currentObjectIndex;
     static void getMouseClickPosition(int button, int state, int x, int y);
     static void handleToggleMenu(int num);
-    static void mapKeyboardToFunctions();
+    static void mapKeyboardToFunctions(int key, int x, int y);
     static int getObjectIndex(Point p);
 };
 

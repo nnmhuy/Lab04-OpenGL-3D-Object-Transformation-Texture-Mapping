@@ -27,8 +27,11 @@ void AffineTransformMenu::getMouseClickPosition(int button, int state, int x, in
 
 void AffineTransformMenu::handleToggleMenu(int select){
     cout << "AFFINE TRANSFORM MENU" << endl;
-    
-    glutMouseFunc(getMouseClickPosition);
+    if (select == 1) { // select object
+        glutMouseFunc(getMouseClickPosition);   
+    } else { // unselect object
+        AffineTransformMenu::currentObjectIndex = -1;
+    }
 }
 
 void AffineTransformMenu::mapKeyboardToFunctions(int key, int x, int y) {

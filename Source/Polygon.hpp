@@ -21,7 +21,8 @@
 
 class Polygon : public Object {
 public:
-    Point top_left, bottom_right;
+    static Point top_left, bottom_right;
+    static vector <Point> currentPoints;
     void getParameters(Point start_point, Point end_point) override;
     void draw() override;
     void drawScreen() override;

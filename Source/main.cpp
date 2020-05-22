@@ -32,7 +32,7 @@ void RenderScreen(void) {
     cout << "Re-render window" << endl;
     int n = Object::objects.size();
     for (int i = 0; i < n; ++i) {
-        objects[i]->drawScreen();
+        Object::objects[i]->drawScreen();
     }
 
     glutSwapBuffers();
@@ -66,18 +66,22 @@ void createMenu(void){
     // glutAddMenuEntry("Regular Hexagon", 6);
     glutAddMenuEntry("Polygon", 0);
     
-    int color_submenu_id = glutCreateMenu(ColorMenu::handleToggleMenu);
-    glutAddMenuEntry("Red", 1);
-    glutAddMenuEntry("Green", 2);
-    glutAddMenuEntry("Blue", 3);
-    glutAddMenuEntry("Yellow", 4);
-    glutAddMenuEntry("Cyan", 5);
-    glutAddMenuEntry("Pink", 6);
+    // int color_submenu_id = glutCreateMenu(ColorMenu::handleToggleMenu);
+    // glutAddMenuEntry("Red", 1);
+    // glutAddMenuEntry("Green", 2);
+    // glutAddMenuEntry("Blue", 3);
+    // glutAddMenuEntry("Yellow", 4);
+    // glutAddMenuEntry("Cyan", 5);
+    // glutAddMenuEntry("Pink", 6);
+
+    int select_submenu_id = glutCreateMenu(AffineTransformMenu::handleToggleMenu);
+    glutAddMenuEntry("Select object", 1);
+    glutAddMenuEntry("Unselect object", 2);
     
     Config::main_menu_id = glutCreateMenu(mainMenu);
     glutAddSubMenu("Draw", draw_submenu_id);
     // glutAddSubMenu("Color", color_submenu_id);
-    glutAddMenuEntry("Select", AffineTransformMenu::handleToggleMenu)
+    glutAddSubMenu("Select", select_submenu_id);
     glutAddMenuEntry("Exit", 0);
     
     glutAttachMenu(GLUT_RIGHT_BUTTON);
@@ -118,7 +122,8 @@ Point DrawMenu::end_point;
 Point AffineTransformMenu::p;
 int AffineTransformMenu::currentObjectIndex = -1;
 vector <Point> Polygon::currentPoints;
-vector <Object*> Polygon::objects;
+Point Polygon::top_left, Polygon::bottom_right;
+vector <Object*> Object::objects;
 int Config::main_menu_id;
 int Config::WIDTH = 0;
 int Config::HEIGHT = 0;
