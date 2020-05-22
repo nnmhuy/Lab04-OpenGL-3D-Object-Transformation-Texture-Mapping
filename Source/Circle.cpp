@@ -65,6 +65,7 @@ void Circle::drawScreen() {
         // draw from stored based points
         for (int i = 0; i < (int)base_points.size(); ++i) {
             glVertex2i(base_points[i].x, base_points[i].y);
+            // rotating have no effect
         }
     glEnd(); // Done drawing points
 }

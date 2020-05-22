@@ -24,6 +24,7 @@ class Object {
 public:
     Point center;
     vector <Point> base_points;
+    int alpha = 0; // rotate angle, use for drawScreen
     static vector<Object*> objects;
     static Object* constructObject(int type);
     static int getClickedObjectIndex(Point p);

@@ -100,7 +100,10 @@ void EllipseMidpoint::drawScreen() {
     glBegin(GL_POINTS); // Select points as the primitive
         // draw from stored based points
         for (int i = 0; i < (int)base_points.size(); ++i) {
-            glVertex2i(base_points[i].x, base_points[i].y);
+            // glVertex2i(base_points[i].x, base_points[i].y);
+            Point p = base_points[i];
+            p.rotate(center, alpha);
+            glVertex2i(p.x, p.y);
         }
     glEnd(); // Done drawing points
 }

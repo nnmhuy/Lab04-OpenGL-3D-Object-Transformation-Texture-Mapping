@@ -61,9 +61,7 @@ void Object::scale(double sx, double sy) {
 }
 
 void Object::rotate(int alpha) {
-    for (int i = 0; i < (int)base_points.size(); ++i) {
-        base_points[i].rotate(center, alpha);
-    }
+    this->alpha += alpha;
 }
 
 bool Object::isPointInside(Point point) {
