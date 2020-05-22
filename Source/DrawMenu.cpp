@@ -37,8 +37,7 @@ void DrawMenu::getEndPoint(int button, int state, int x, int y) {
 void DrawMenu::startDrawing() {
     Object * object = Object::constructObject(DrawMenu::shape);
     object->getParameters(DrawMenu::start_point, DrawMenu::end_point);
-    object->draw();
-    glFlush();
+    glutPostRedisplay();
 }
 
 void DrawMenu::handleToggleMenu(int shape){

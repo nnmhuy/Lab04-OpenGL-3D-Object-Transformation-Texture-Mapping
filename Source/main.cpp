@@ -16,6 +16,7 @@
 #include "Point.hpp"
 #include "ColorMenu.hpp"
 #include "DrawMenu.hpp"
+#include "AffineTransformMenu.hpp"
 #include "Polygon.hpp"
 
 using namespace std;
@@ -26,10 +27,15 @@ int value;
 void RenderScreen(void) {
     // temporary ignore for not deleting drawn shapes
     // Clear the window with current clearing color
-    glClear(GL_DEPTH_BUFFER_BIT);
-    // cout << "Re-render window" << endl;
-    // Flush drawing commands
-    glFlush();
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    cout << "Re-render window" << endl;
+    int n = Object::objects.size();
+    for (int i = 0; i < n; ++i) {
+        objects[i]->drawScreen();
+    }
+
+    glutSwapBuffers();
 }
 
 //  Set up the rendering state, set only once before rendering
@@ -55,9 +61,9 @@ void createMenu(void){
     glutAddMenuEntry("Ellipse", 1);
     glutAddMenuEntry("Rectangle", 2);
     glutAddMenuEntry("Circle", 3);
-    glutAddMenuEntry("Star", 4);
-    glutAddMenuEntry("Regular Pentagon", 5);
-    glutAddMenuEntry("Regular Hexagon", 6);
+    // glutAddMenuEntry("Star", 4);
+    // glutAddMenuEntry("Regular Pentagon", 5);
+    // glutAddMenuEntry("Regular Hexagon", 6);
     glutAddMenuEntry("Polygon", 0);
     
     int color_submenu_id = glutCreateMenu(ColorMenu::handleToggleMenu);
@@ -70,7 +76,8 @@ void createMenu(void){
     
     Config::main_menu_id = glutCreateMenu(mainMenu);
     glutAddSubMenu("Draw", draw_submenu_id);
-    glutAddSubMenu("Color", color_submenu_id);
+    // glutAddSubMenu("Color", color_submenu_id);
+    glutAddMenuEntry("Select", AffineTransformMenu::handleToggleMenu)
     glutAddMenuEntry("Exit", 0);
     
     glutAttachMenu(GLUT_RIGHT_BUTTON);
@@ -108,14 +115,17 @@ int ColorMenu::currentColor = 1;
 int DrawMenu::shape = 0;
 Point DrawMenu::start_point;
 Point DrawMenu::end_point;
+Point AffineTransformMenu::p;
+int AffineTransformMenu::currentObjectIndex = -1;
 vector <Point> Polygon::currentPoints;
+vector <Object*> Polygon::objects;
 int Config::main_menu_id;
 int Config::WIDTH = 0;
 int Config::HEIGHT = 0;
 
 int main(int argc, char * argv[]) {
     glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGBA);
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
     glutInitWindowSize(Config::ORIGINAL_WIDTH, Config::ORIGINAL_HEIGHT);
     glutCreateWindow("Coloring Objects");
 

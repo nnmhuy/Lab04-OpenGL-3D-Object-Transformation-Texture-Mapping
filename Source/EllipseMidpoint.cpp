@@ -13,18 +13,22 @@ void EllipseMidpoint::getParameters(Point start_point, Point end_point){
     center.y = (start_point.y + end_point.y) / 2;
     rx = abs(start_point.x - end_point.x) / 2;
     ry = abs(start_point.y - end_point.y) / 2;
+    draw();
 }
 
 void EllipseMidpoint::ellipseSymmetric4(GLint x, GLint y) {
-    glVertex2i(x + center.x, y + center.y);
-    glVertex2i(x + center.x, -y + center.y);
-    glVertex2i(-x + center.x, y + center.y);
-    glVertex2i(-x + center.x, -y + center.y);
+    // glVertex2i(x + center.x, y + center.y);
+    // glVertex2i(x + center.x, -y + center.y);
+    // glVertex2i(-x + center.x, y + center.y);
+    // glVertex2i(-x + center.x, -y + center.y);
+    base_points.push_back(x + center.x, y + center.y));
+    base_points.push_back(x + center.x, -y + center.y));
+    base_points.push_back(-x + center.x, y + center.y));
+    base_points.push_back(-x + center.x, -y + center.y));
 }
 
 
 void EllipseMidpoint::draw() {
-    glColor3f(1.0f, 1.0f, 1.0f);
     cout << "Drawing ellipse" << endl;
     
     bool isSwap = false;
@@ -87,4 +91,32 @@ void EllipseMidpoint::draw() {
     if (isSwap) {
         swap(rx, ry);
     }
+}
+
+
+void EllipseMidpoint::drawScreen() {
+    glColor3f(1.0f, 1.0f, 1.0f);
+    
+    glBegin(GL_POINTS); // Select points as the primitive
+        // draw from stored based points
+        for (int i = 0; i < (int)base_points.size(); ++i) {
+            glVertex2i(base_points[i].x, base_points[i].y);
+        }
+    glEnd(); // Done drawing points
+}
+
+void EllipseMidpoint::scale(double dx, double dy) {
+    rx *= dx;
+    ry *= dy;
+    for (int i = 0; i < (int)base_points.size(); ++i) {
+        base_points[i].scale(dx, dy);
+    }
+}
+
+bool EllipseMidpoint::isPointInside(Point point) {
+    double value = ((point.x - center.x) * (point.x - center.x)) / (rx * rx)
+        + ((point.y - center.y) * (point.y - center.y)) / (ry * ry)
+        - 1;
+    if (value <= 0) return true;
+    return false;
 }

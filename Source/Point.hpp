@@ -18,9 +18,12 @@ using namespace std;
 
 class Point {
 public:
-    GLint x, y;
+    GLint x, y, z;
     friend ifstream &operator >> (ifstream &input, Point &point);
     Point() = default;
     Point(GLint x, GLint y);
+    void translate(int dx, int dy); // translate in x and translate in y
+    void scale(double sx, double sy); // scale in x and scale in y
+    void rotate(Point center, int alpha); // in degree
 };
 #endif /* Point_hpp */

@@ -21,10 +21,10 @@
 
 class Polygon : public Object {
 public:
-    static vector<Point> currentPoints;
-    vector <Point> points;
+    Point top_left, bottom_right;
     void getParameters(Point start_point, Point end_point) override;
     void draw() override;
+    void drawScreen() override;
     static void handleInsertPoint(int button, int state, int x, int y);
 };
 

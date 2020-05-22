@@ -26,14 +26,57 @@ Object* Object::constructObject(int type) {
             return new Rectangle();
         case 3:
             return new Circle();
-        case 4:
-            return new Star();
-        case 5:
-            return new RegularPentagon();
-        case 6:
-            return new RegularHexagon();
+        // case 4:
+        //     return new Star();
+        // case 5:
+        //     return new RegularPentagon();
+        // case 6:
+        //     return new RegularHexagon();
         default:
             return NULL;
     }
     return NULL;
+}
+
+int getClickedObjectIndex(Point p) {
+    int n = objects.size();
+    for (int i = n - 1; i >= 0; --i) {
+        if (objects[i]->isPointInside(p)) return i;
+    }
+    return -1;
+}
+
+
+void Object::translate(int dx, int dy) {
+    center.translate(dx, dy);
+    for (int i = 0; i < (int)base_points.size(); ++i) {
+        base_points[i].translate(dx, dy);
+    }
+}
+
+void Object::scale(double sx, double sy) {
+    for (int i = 0; i < (int)base_points.size(); ++i) {
+        base_points[i].scale(dx, dy);
+    }
+}
+
+void Object::rotate(int alpha) {
+    for (int i = 0; i < (int)base_points.size(); ++i) {
+        base_points[i].rotate(center, alpha);
+    }
+}
+
+bool isPointInside(Point point) {
+    bool isInside = false;
+    int n = base_points.size();
+    for (int i = 0; i < n; ++i) {
+        j = (i + 1) % n;
+        if ((base_points[i].y > point.y) != (base_points[j].y > point.y)
+            && (point.x < 
+                (base_points[j].x - base_points[i].x) * (point.y - base_points[i].y) 
+                / (base_points[j].y - base_points[i].y) + base_points[i].x) {
+                isInside = !isInside;
+            }
+    }
+    return isInside;
 }

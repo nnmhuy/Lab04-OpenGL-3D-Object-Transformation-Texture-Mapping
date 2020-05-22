@@ -20,11 +20,13 @@
 #include "Point.hpp"
 
 class EllipseMidpoint: public Object {
-    Point center;
     GLdouble rx, ry;
 public:
     void getParameters(Point start_point, Point end_point) override;
     void draw() override;
+    void drawScreen() override;
+    void scale(double sx, double sy) override;
+    bool isPointInside(Point point) override;
     void ellipseSymmetric4(GLint x, GLint y);
 };
 

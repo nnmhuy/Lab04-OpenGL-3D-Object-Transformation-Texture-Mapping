@@ -18,12 +18,14 @@
 #include "Point.hpp"
 
 class Circle: public Object {
-    Point center;
-    GLint radius;
+    double radius;
     
 public:
     void getParameters(Point start_point, Point end_point) override;
     void draw() override;
+    void drawScreen() override;
+    bool isPointInside(Point point) override;
+    void scale(double sx, double sy) override;
     void circleSymmetric8(GLint x, GLint y);
 };
 
