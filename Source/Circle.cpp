@@ -71,10 +71,10 @@ void Circle::drawScreen() {
 
 void Circle::scale(double dx, double dy) {
     radius = radius * dx;
-    for (int i = 0; i < (int)base_points.size(); ++i) {
-        base_points[i].scale(dx, dy);
-    }
+    base_points.clear();
+    draw();
 }
+
 
 bool Circle::isPointInside(Point point) {
     // check distance to center less or equal radius

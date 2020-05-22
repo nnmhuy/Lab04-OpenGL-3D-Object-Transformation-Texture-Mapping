@@ -13,10 +13,12 @@ void AffineTransformMenu::getMouseClickPosition(int button, int state, int x, in
     if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
         glutMouseFunc(NULL);
         cout << "Choose object at point: " << x << " " << y << endl;
-        AffineTransformMenu::p = Point(x, y);
-        AffineTransformMenu::currentObjectIndex = Object::getClickedObjectIndex(p);
+        p = Point(x, y);
+        currentObjectIndex = Object::getClickedObjectIndex(p);
+        cout << "Selected: " << currentObjectIndex << endl;
 
-        glutSpecialFunc(AffineTransformMenu::mapKeyboardToFunctions);
+        glutKeyboardFunc(mapKeyboardToFunctions);
+        glutSpecialFunc(mapSpecialKeyboardToFunctions);
     } else {
         if (button != GLUT_LEFT_BUTTON) {
             glutMouseFunc(NULL);
@@ -34,26 +36,16 @@ void AffineTransformMenu::handleToggleMenu(int select){
     }
 }
 
-void AffineTransformMenu::mapKeyboardToFunctions(int key, int x, int y) {
-    // l: rotate left; r: rotate right
+void AffineTransformMenu::mapSpecialKeyboardToFunctions(int key, int x, int y) {
     // up, down, left, right: translate
-    // +, -: scale
     if (currentObjectIndex == -1) return;
+    cout << "Pressed: " << key << endl;
     switch (key) {
-        case 108: // l
-            Object::objects[currentObjectIndex]->rotate(1);
-            break;
-        case 114: // r
-            Object::objects[currentObjectIndex]->rotate(-1);
-            break;  
-        case 43: // +
-            Object::objects[currentObjectIndex]->scale(1.1, 1.1);
-            break;
-        case 45: // -
-            Object::objects[currentObjectIndex]->scale(0.91, 0.91);
-            break;
         case 100: // <--
             Object::objects[currentObjectIndex]->translate(-1, 0);
+            break;
+        case 101: // ^
+            Object::objects[currentObjectIndex]->translate(0, -1);
             break;
         case 102: // -->
             Object::objects[currentObjectIndex]->translate(1, 0);
@@ -70,4 +62,35 @@ void AffineTransformMenu::mapKeyboardToFunctions(int key, int x, int y) {
         default:
             break;
     }
+    glutPostRedisplay();
+}
+
+void AffineTransformMenu::mapKeyboardToFunctions(unsigned char key, int x, int y) {
+    // l: rotate left; r: rotate right
+    // +, -: scale
+    if (currentObjectIndex == -1) return;
+    cout << "Pressed: " << key << endl;
+    switch (key) {
+        case 'l': // l
+            Object::objects[currentObjectIndex]->rotate(-1);
+            break;
+        case 'r': // r
+            Object::objects[currentObjectIndex]->rotate(1);
+            break;  
+        case '+': // +
+            Object::objects[currentObjectIndex]->scale(1.1, 1.1);
+            break;
+        case '-': // -
+            Object::objects[currentObjectIndex]->scale(0.91, 0.91);
+            break;
+        case 27: // esc
+            // not selecting any object
+            currentObjectIndex = -1;
+            // detach keyboard func
+            glutSpecialFunc(NULL);
+            break;
+        default:
+            break;
+    }
+    glutPostRedisplay();
 }

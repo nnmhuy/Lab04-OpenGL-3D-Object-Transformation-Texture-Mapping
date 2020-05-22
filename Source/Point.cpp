@@ -38,12 +38,15 @@ void Point::scale(double sx, double sy) {
 void Point::rotate(Point center, int alpha) {
     double cosAlpha =  cos(double(alpha) * PI / 180.0);
     double sinAlpha =  sin(double(alpha) * PI / 180.0);
+
+    x -= center.x;
+    y -= center.y;
     
-    int newX = center.x + (x - center.x) * cosAlpha + (y - center.y) * sinAlpha;
-    int newY = center.y + (x - center.x) * sinAlpha + (y - center.y) * cosAlpha;
+    int newX = round(cosAlpha * x - sinAlpha * y);
+    int newY = round(sinAlpha * x + cosAlpha * y);
     
-    x = newX;
-    y = newY;
+    x = newX + center.x;
+    y = newY + center.y;
 }
 
 

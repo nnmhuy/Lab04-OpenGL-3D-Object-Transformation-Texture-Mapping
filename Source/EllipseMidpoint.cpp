@@ -108,9 +108,8 @@ void EllipseMidpoint::drawScreen() {
 void EllipseMidpoint::scale(double dx, double dy) {
     rx *= dx;
     ry *= dy;
-    for (int i = 0; i < (int)base_points.size(); ++i) {
-        base_points[i].scale(dx, dy);
-    }
+    base_points.clear();
+    draw();
 }
 
 bool EllipseMidpoint::isPointInside(Point point) {

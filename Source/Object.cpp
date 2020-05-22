@@ -67,6 +67,7 @@ void Object::rotate(int alpha) {
 }
 
 bool Object::isPointInside(Point point) {
+    cout << "Object::isPointInside" << endl;
     bool isInside = false;
     int n = base_points.size();
     for (int i = 0; i < n; ++i) {

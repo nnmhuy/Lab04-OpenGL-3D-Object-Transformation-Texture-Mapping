@@ -37,6 +37,7 @@ void DrawMenu::getEndPoint(int button, int state, int x, int y) {
 void DrawMenu::startDrawing() {
     Object * object = Object::constructObject(DrawMenu::shape);
     object->getParameters(DrawMenu::start_point, DrawMenu::end_point);
+    Object::objects.push_back(object);
     glutPostRedisplay();
 }
 
@@ -45,10 +46,11 @@ void DrawMenu::handleToggleMenu(int shape){
     DrawMenu::shape = shape;
     
     if (shape == 0) {
-        Polygon polygon;
-        polygon.getParameters(Point(0, 0), Point(0, 0));
-        polygon.base_points = Polygon::currentPoints;
+        Object *polygon = new Polygon();
+        polygon->getParameters(Point(0, 0), Point(0, 0));
+        polygon->base_points = Polygon::currentPoints;
         Polygon::currentPoints.clear();
+        Object::objects.push_back(polygon);
     } else {
         glutMouseFunc(getStartPoint);
     }
