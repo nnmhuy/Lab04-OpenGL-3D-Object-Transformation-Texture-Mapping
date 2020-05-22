@@ -42,11 +42,6 @@ void Polygon::handleInsertPoint(int button, int state, int x, int y) {
 }
 
 void Polygon::draw() {
-    for (int i = 0 ; i < base_points.size(); ++i) {
-        cout << base_points[i].x << " " << base_points[i].y << endl;
-    }
-    cout << top_left.x << " " << bottom_right.x << endl;
-    cout << top_left.y << " " << bottom_right.y << endl;
     center.x = (top_left.x + bottom_right.x) / 2;
     center.y = (top_left.y + bottom_right.y) / 2;
 }
@@ -59,6 +54,7 @@ void Polygon::drawScreen() {
             // glVertex2i(base_points[i].x, base_points[i].y);
             Point p = base_points[i];
             p.rotate(center, alpha);
+            p.scale(center, sScale, sScale);
             glVertex2i(p.x, p.y);
         }
     glEnd(); // Done drawing points

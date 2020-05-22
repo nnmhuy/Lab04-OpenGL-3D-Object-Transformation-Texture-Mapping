@@ -35,6 +35,7 @@ void Rectangle::drawScreen() {
             // glVertex2i(base_points[i].x, base_points[i].y);
             Point p = base_points[i];
             p.rotate(center, alpha);
+            p.scale(center, sScale, sScale);
             glVertex2i(p.x, p.y);
         }
     glEnd(); // Done drawing points
