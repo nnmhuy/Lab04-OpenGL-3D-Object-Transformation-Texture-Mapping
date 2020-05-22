@@ -30,9 +30,9 @@ void Point::translate(int dx, int dy) {
     y += dy;
 }
 
-void Point::scale(double sx, double sy) {
-    x = round(sx * x);
-    y = round(sy * y);
+void Point::scale(Point center, double sx, double sy) {
+    x = round(sx * x + center.x * (1.0 - sx));
+    y = round(sy * y + center.y * (1.0 - sy));
 }
 
 void Point::rotate(Point center, int alpha) {
