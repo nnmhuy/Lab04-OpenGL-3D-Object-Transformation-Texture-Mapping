@@ -10,8 +10,6 @@ public:
     const static int ORIGINAL_HEIGHT = 500;
     static int WIDTH;
     static int HEIGHT;
-    static int color;
-    static int main_menu_id;
 };
 
 #endif /* Config_hpp */

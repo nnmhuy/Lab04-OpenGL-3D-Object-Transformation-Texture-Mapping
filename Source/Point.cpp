@@ -11,10 +11,10 @@
 
 #define PI 3.14159265
 
-Point::Point(GLint x, GLint y) {
+Point::Point(GLfloat x, GLfloat y, GLfloat z) {
     this->x = x;
     this->y = y;
-    this->z = 1;
+    this->z = z;
 }
 
 ifstream& operator >> (ifstream &input, Point &point)
@@ -24,29 +24,3 @@ ifstream& operator >> (ifstream &input, Point &point)
     point.z = 1;
     return input;
 }
-
-void Point::translate(int dx, int dy) {
-    x += dx;
-    y += dy;
-}
-
-void Point::scale(Point center, double sx, double sy) {
-    x = round(sx * x + center.x * (1.0 - sx));
-    y = round(sy * y + center.y * (1.0 - sy));
-}
-
-void Point::rotate(Point center, int alpha) {
-    double cosAlpha =  cos(double(alpha) * PI / 180.0);
-    double sinAlpha =  sin(double(alpha) * PI / 180.0);
-
-    x -= center.x;
-    y -= center.y;
-    
-    int newX = round(cosAlpha * x - sinAlpha * y);
-    int newY = round(sinAlpha * x + cosAlpha * y);
-    
-    x = newX + center.x;
-    y = newY + center.y;
-}
-
-

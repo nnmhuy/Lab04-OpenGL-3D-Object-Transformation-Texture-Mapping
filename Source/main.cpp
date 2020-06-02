@@ -14,15 +14,8 @@
 
 #include "Config.hpp"
 #include "Point.hpp"
-#include "ColorMenu.hpp"
-#include "DrawMenu.hpp"
-#include "AffineTransformMenu.hpp"
-#include "Polygon.hpp"
 
 using namespace std;
-
-int window;
-int value;
 
 void RenderScreen(void) {
     // temporary ignore for not deleting drawn shapes
@@ -30,10 +23,6 @@ void RenderScreen(void) {
     glClear(GL_COLOR_BUFFER_BIT);
 
     cout << "Re-render window" << endl;
-    int n = Object::objects.size();
-    for (int i = 0; i < n; ++i) {
-        Object::objects[i]->drawScreen();
-    }
 
     glutSwapBuffers();
 }
@@ -44,49 +33,6 @@ void SetupRC(void) {
     glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
     glMatrixMode(GL_PROJECTION);
 }
-
-void mainMenu(int num){
-    cout << "MAIN MENU" << endl;
-    if(num == 0){
-        glutDestroyWindow(window);
-        exit(0);
-    } else {
-        value = num;
-    }
-    //glutPostRedisplay();
-}
-
-void createMenu(void){
-    int draw_submenu_id = glutCreateMenu(DrawMenu::handleToggleMenu);
-    glutAddMenuEntry("Ellipse", 1);
-    glutAddMenuEntry("Rectangle", 2);
-    glutAddMenuEntry("Circle", 3);
-    // glutAddMenuEntry("Star", 4);
-    // glutAddMenuEntry("Regular Pentagon", 5);
-    // glutAddMenuEntry("Regular Hexagon", 6);
-    glutAddMenuEntry("Polygon", 0);
-    
-    // int color_submenu_id = glutCreateMenu(ColorMenu::handleToggleMenu);
-    // glutAddMenuEntry("Red", 1);
-    // glutAddMenuEntry("Green", 2);
-    // glutAddMenuEntry("Blue", 3);
-    // glutAddMenuEntry("Yellow", 4);
-    // glutAddMenuEntry("Cyan", 5);
-    // glutAddMenuEntry("Pink", 6);
-
-    int select_submenu_id = glutCreateMenu(AffineTransformMenu::handleToggleMenu);
-    glutAddMenuEntry("Select object", 1);
-    glutAddMenuEntry("Unselect object", 2);
-    
-    Config::main_menu_id = glutCreateMenu(mainMenu);
-    glutAddSubMenu("Draw", draw_submenu_id);
-    // glutAddSubMenu("Color", color_submenu_id);
-    glutAddSubMenu("Affine transform", select_submenu_id);
-    glutAddMenuEntry("Exit", 0);
-    
-    glutAttachMenu(GLUT_RIGHT_BUTTON);
-}
-
 
 // Called by GLUT library when the window has changed size
 void ChangeSize(GLsizei w, GLsizei h)
@@ -113,19 +59,6 @@ void ChangeSize(GLsizei w, GLsizei h)
     glLoadIdentity();
 }
 
-
-Point ColorMenu::p;
-int ColorMenu::currentColor = 1;
-int DrawMenu::shape = 0;
-Point DrawMenu::start_point;
-Point DrawMenu::end_point;
-Point AffineTransformMenu::p;
-int AffineTransformMenu::currentObjectIndex = -1;
-vector <Point> Polygon::currentPoints;
-Object * Polygon::drawingPolygon;
-Point Polygon::top_left, Polygon::bottom_right;
-vector <Object*> Object::objects;
-int Config::main_menu_id;
 int Config::WIDTH = 0;
 int Config::HEIGHT = 0;
 
@@ -133,10 +66,10 @@ int main(int argc, char * argv[]) {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
     glutInitWindowSize(Config::ORIGINAL_WIDTH, Config::ORIGINAL_HEIGHT);
-    glutCreateWindow("Coloring Objects");
+    glutCreateWindow("3D Object Transformation");
 
     SetupRC();
-    createMenu();
+
     glutReshapeFunc(ChangeSize);
     glutDisplayFunc(RenderScreen);
     glutMainLoop();
