@@ -7,14 +7,15 @@
 //
 
 #include "Object.hpp"
+#include "Cube.hpp"
 
 Object* Object::constructObject(int type) {
     switch (type) {
         // case 0:
         //     return new Polygon();
-        // case 1:
-        //     return new EllipseMidpoint();
-        //     break;
+        case 1:
+            return new Cube();
+            break;
         // case 2:
         //     return new Rectangle();
         // case 3:

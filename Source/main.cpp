@@ -9,102 +9,58 @@
 #define GL_SILENCE_DEPRECATION
 #include <iostream>
 #include <fstream>
+#include <vector>
 
 #include <GL/glut.h>
+#include <SOIL/SOIL.h>
 
 #include "Config.hpp"
+#include "Object.hpp"
 #include "Point.hpp"
 
 using namespace std;
 
 GLfloat anglePyramid = 0.0f; // Rotational angle for pyramid [NEW]
-GLfloat angleCube = 0.0f; // Rotational angle for cube [NEW]
 int refreshMills = 15; // refresh interval in milliseconds [NEW]
+GLuint texture[1]; // Storage For One Texture ( NEW )
+
+int loadGLTextures() // Load Bitmaps And Convert To Textures
+{
+    cout << "Load texture" << endl;
+    /* load an image file directly as a new OpenGL texture */
+    texture[0] = SOIL_load_OGL_texture
+    (
+    "./Data/earth2048.bmp",
+    SOIL_LOAD_AUTO,
+    SOIL_CREATE_NEW_ID,
+    SOIL_FLAG_INVERT_Y
+    );
+
+    if(texture[0] == 0) {
+        cout << "Load texture FAIL" << endl;
+        return false;
+    }
+        
+    cout << "Load texture SUCCESS" << endl;
+    // Typical Texture Generation Using Data From The Bitmap
+    glBindTexture(GL_TEXTURE_2D, texture[0]);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+
+    return true;
+}
 
 void RenderScreen(void) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear color and depth buffers
     glMatrixMode(GL_MODELVIEW); // To operate on model-view matrix
-    // Render a color-cube consisting of 6 quads with different colors
-    glLoadIdentity(); // Reset the model-view matrix
-    glTranslatef(1.5f, 0.0f, -7.0f); // Move right and into the screen
-    glRotatef(angleCube, 1.0f, 1.0f, 1.0f); // Rotate about (1,1,1)-axis [NEW]
-    glBegin(GL_QUADS); // Begin drawing the color cube with 6 quads
-    // Top face (y = 1.0f)
-    // Define vertices in counter-clockwise (CCW) order with normal pointing out
-    glColor3f(0.0f, 1.0f, 0.0f); // Green
-    glVertex3f( 1.0f, 1.0f, -1.0f);
-    glVertex3f(-1.0f, 1.0f, -1.0f);
-    glVertex3f(-1.0f, 1.0f, 1.0f);
-    glVertex3f( 1.0f, 1.0f, 1.0f);
-    // Bottom face (y = -1.0f)
-    glColor3f(1.0f, 0.5f, 0.0f); // Orange
-    glVertex3f( 1.0f, -1.0f, 1.0f);
-    glVertex3f(-1.0f, -1.0f, 1.0f);
-    glVertex3f(-1.0f, -1.0f, -1.0f);
-    glVertex3f( 1.0f, -1.0f, -1.0f);
-    // Front face (z = 1.0f)
-    glColor3f(1.0f, 0.0f, 0.0f); // Red
-    glVertex3f( 1.0f, 1.0f, 1.0f);
-    glVertex3f(-1.0f, 1.0f, 1.0f);
-    glVertex3f(-1.0f, -1.0f, 1.0f);
-    glVertex3f( 1.0f, -1.0f, 1.0f);
-    // Back face (z = -1.0f)
-    glColor3f(1.0f, 1.0f, 0.0f); // Yellow
-    glVertex3f( 1.0f, -1.0f, -1.0f);
-    glVertex3f(-1.0f, -1.0f, -1.0f);
-    glVertex3f(-1.0f, 1.0f, -1.0f);
-    glVertex3f( 1.0f, 1.0f, -1.0f);
-    // Left face (x = -1.0f)
-    glColor3f(0.0f, 0.0f, 1.0f); // Blue
-    glVertex3f(-1.0f, 1.0f, 1.0f);
-    glVertex3f(-1.0f, 1.0f, -1.0f);
-    glVertex3f(-1.0f, -1.0f, -1.0f);
-    glVertex3f(-1.0f, -1.0f, 1.0f);
-    // Right face (x = 1.0f)
-    glColor3f(1.0f, 0.0f, 1.0f); // Magenta
-    glVertex3f(1.0f, 1.0f, -1.0f);
-    glVertex3f(1.0f, 1.0f, 1.0f);
-    glVertex3f(1.0f, -1.0f, 1.0f);
-    glVertex3f(1.0f, -1.0f, -1.0f);
-    glEnd(); // End of drawing color-cube
-    // Render a pyramid consists of 4 triangles
-    glLoadIdentity(); // Reset the model-view matrix
-    glTranslatef(-1.5f, 0.0f, -6.0f); // Move left and into the screen
-    glRotatef(anglePyramid, 1.0f, 1.0f, 0.0f); // Rotate about the (1,1,0)-axis [NEW]
-    glBegin(GL_TRIANGLES); // Begin drawing the pyramid with 4 triangles
-    // Front
-    glColor3f(1.0f, 0.0f, 0.0f); // Red
-    glVertex3f( 0.0f, 1.0f, 0.0f);
-    glColor3f(0.0f, 1.0f, 0.0f); // Green
-    glVertex3f(-1.0f, -1.0f, 1.0f);
-    glColor3f(0.0f, 0.0f, 1.0f); // Blue
-    glVertex3f(1.0f, -1.0f, 1.0f);
-    // Right
-    glColor3f(1.0f, 0.0f, 0.0f); // Red
-    glVertex3f(0.0f, 1.0f, 0.0f);
-    glColor3f(0.0f, 0.0f, 1.0f); // Blue
-    glVertex3f(1.0f, -1.0f, 1.0f);
-    glColor3f(0.0f, 1.0f, 0.0f); // Green
-    glVertex3f(1.0f, -1.0f, -1.0f);
-    // Back
-    glColor3f(1.0f, 0.0f, 0.0f); // Red
-    glVertex3f(0.0f, 1.0f, 0.0f);
-    glColor3f(0.0f, 1.0f, 0.0f); // Green
-    glVertex3f(1.0f, -1.0f, -1.0f);
-    glColor3f(0.0f, 0.0f, 1.0f); // Blue
-    glVertex3f(-1.0f, -1.0f, -1.0f);
-    // Left
-    glColor3f(1.0f,0.0f,0.0f); // Red
-    glVertex3f( 0.0f, 1.0f, 0.0f);
-    glColor3f(0.0f,0.0f,1.0f); // Blue
-    glVertex3f(-1.0f,-1.0f,-1.0f);
-    glColor3f(0.0f,1.0f,0.0f); // Green
-    glVertex3f(-1.0f,-1.0f, 1.0f);
-    glEnd(); // Done drawing the pyramid
+ 
+    // Render object from object list
+    int nObject = Object::objects.size();
+    for (int i = 0; i < nObject; ++i) {
+        Object::objects[i]->drawScreen();
+    }
+
     glutSwapBuffers(); // Swap the front and back frame buffers (double buffering)
-    // Update the rotational angle after each refresh [NEW]
-    anglePyramid += 0.2f;
-    angleCube -= 0.15f;
 }
 
 //  Set up the rendering state, set only once before rendering
@@ -134,19 +90,39 @@ void ChangeSize(GLsizei width, GLsizei height)
 
 /* Called back when timer expired [NEW] */
 void timer(int value) {
- glutPostRedisplay(); // Post re-paint request to activate display()
- glutTimerFunc(refreshMills, timer, 0); // next timer call milliseconds later
+    // update angle of all shape
+    int nObject = Object::objects.size();
+    for (int i = 0; i < nObject; ++i) {
+        Object::objects[i]->angle += 0.1f;
+    }
+
+    glutPostRedisplay(); // Post re-paint request to activate display()
+    glutTimerFunc(refreshMills, timer, 0); // next timer call milliseconds later
 }
+
+void initObjectList() {
+    // new cube
+    Object::objects.push_back(Object::constructObject(1));
+
+    int nObject = Object::objects.size();
+    for (int i = 0; i < nObject; ++i) {
+        Object::objects[i]->draw();
+    }
+}
+
 
 int Config::WIDTH = 0;
 int Config::HEIGHT = 0;
+vector<Object*> Object::objects;
 
 int main(int argc, char * argv[]) {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE);
     glutInitWindowSize(Config::ORIGINAL_WIDTH, Config::ORIGINAL_HEIGHT);
     glutCreateWindow("3D Object Transformation");
-
+    
+    initObjectList();
+    loadGLTextures();
     SetupRC();
 
     glutReshapeFunc(ChangeSize);

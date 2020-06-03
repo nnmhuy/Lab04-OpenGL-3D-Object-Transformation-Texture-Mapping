@@ -6,7 +6,7 @@ run:
 	./main
 
 all: 
-	$(CC) $(CFLAGS) *.cpp -o main -lglut -lGLU -lGL
+	$(CC) $(CFLAGS) *.cpp -o main -lglut -lGLU -lGL -lSOIL
 
 clean:
 	rm -rf *o main

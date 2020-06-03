@@ -22,10 +22,8 @@ using namespace std;
 
 class Object {
 public:
-    Point center;
-    vector <Point> base_points;
-    int angle = 0; // rotate angle, use for drawScreen
-    double sScale = 1;
+    GLfloat angle = 0; // rotate angle, use for drawScreen
+    GLfloat sScale = 1;
     static vector<Object*> objects;
     static Object* constructObject(int type);
     virtual void draw() = 0;
