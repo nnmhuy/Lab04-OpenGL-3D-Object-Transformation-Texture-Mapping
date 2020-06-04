@@ -9,8 +9,6 @@
 #include <math.h>
 #include "Sphere.hpp"
 
-const double PI = 3.14159265359;
-
 Sphere::Sphere(double radius, int nStack, int nSector) {
     this->radius = radius;
     this->nStack = nStack;
@@ -26,6 +24,7 @@ void Sphere::drawScreen() {
     glTranslatef(0.0f, 2.0f, -7.0f); // Move into the screen
     glScalef(0.5f, 0.5f, 0.5f);
     glRotatef(angle, 1.0f, 1.0f, 1.0f); // Rotate about (1,1,1)-axis
+
 
     for (int i = 0; i < nStack; ++i) {
         double latitude1 = (PI / nStack) * i - PI / 2.0;

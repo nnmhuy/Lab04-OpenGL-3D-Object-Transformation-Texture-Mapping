@@ -18,9 +18,13 @@
 #include "Point.hpp"
 
 class Cylinder: public Object {
-    double radius;
+    double radius = 1;
+    double height = 2;
+    int nSlice = 50, nStack = 50;
     Point center;
 public:
+    Cylinder() = default;
+    Cylinder(int radius, int height, int nSlice, int nStack);
     void draw() override;
     void drawScreen() override;
 };

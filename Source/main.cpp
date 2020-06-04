@@ -93,7 +93,7 @@ void timer(int value) {
     // update angle of all shape
     int nObject = Object::objects.size();
     for (int i = 0; i < nObject; ++i) {
-        Object::objects[i]->angle += 0.1f;
+        Object::objects[i]->angle += 0.5f;
     }
 
     glutPostRedisplay(); // Post re-paint request to activate display()

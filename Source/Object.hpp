@@ -17,6 +17,7 @@
 #include <GL/glut.h>
 
 #include "Point.hpp"
+const double PI = 3.14159265359;
 
 using namespace std;
 
