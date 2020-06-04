@@ -102,7 +102,9 @@ void timer(int value) {
 
 void initObjectList() {
     // new cube
+    Object::objects.push_back(Object::constructObject(0));
     Object::objects.push_back(Object::constructObject(1));
+    Object::objects.push_back(Object::constructObject(2));
 
     int nObject = Object::objects.size();
     for (int i = 0; i < nObject; ++i) {

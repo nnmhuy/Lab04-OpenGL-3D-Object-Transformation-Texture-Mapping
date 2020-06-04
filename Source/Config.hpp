@@ -6,8 +6,8 @@
 
 class Config {
 public:
-    const static int ORIGINAL_WIDTH = 1000;
-    const static int ORIGINAL_HEIGHT = 1000;
+    const static int ORIGINAL_WIDTH = 500;
+    const static int ORIGINAL_HEIGHT = 500;
     static int WIDTH;
     static int HEIGHT;
 };

@@ -16,5 +16,9 @@ void Sphere::draw() {
 
 
 void Sphere::drawScreen() {
+    glLoadIdentity(); // Reset the model-view matrix
+    glTranslatef(0.0f, 2.0f, -7.0f); // Move right and into the screen
+    glScalef(0.5f, 0.5f, 0.5f);
 
+    glutSolidSphere(1, 25, 25);
 }

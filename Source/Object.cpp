@@ -7,17 +7,19 @@
 //
 
 #include "Object.hpp"
+#include "Sphere.hpp"
 #include "Cube.hpp"
+#include "Cylinder.hpp"
 
 Object* Object::constructObject(int type) {
     switch (type) {
-        // case 0:
-        //     return new Polygon();
+        case 0:
+            return new Sphere();
         case 1:
             return new Cube();
             break;
-        // case 2:
-        //     return new Rectangle();
+        case 2:
+            return new Cylinder();
         // case 3:
         //     return new Circle();
         // case 4:
