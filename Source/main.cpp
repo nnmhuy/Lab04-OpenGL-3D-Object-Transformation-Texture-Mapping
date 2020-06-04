@@ -105,6 +105,7 @@ void initObjectList() {
     Object::objects.push_back(Object::constructObject(0));
     Object::objects.push_back(Object::constructObject(1));
     Object::objects.push_back(Object::constructObject(2));
+    Object::objects.push_back(Object::constructObject(3));
 
     int nObject = Object::objects.size();
     for (int i = 0; i < nObject; ++i) {

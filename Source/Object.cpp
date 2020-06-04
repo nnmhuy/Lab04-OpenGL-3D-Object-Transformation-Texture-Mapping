@@ -10,6 +10,7 @@
 #include "Sphere.hpp"
 #include "Cube.hpp"
 #include "Cylinder.hpp"
+#include "Cone.hpp"
 
 Object* Object::constructObject(int type) {
     switch (type) {
@@ -20,8 +21,8 @@ Object* Object::constructObject(int type) {
             break;
         case 2:
             return new Cylinder();
-        // case 3:
-        //     return new Circle();
+        case 3:
+            return new Cone();
         // case 4:
         //     return new Star();
         // case 5:
