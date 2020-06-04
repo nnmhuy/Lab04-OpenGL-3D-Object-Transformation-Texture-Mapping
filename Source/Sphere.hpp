@@ -18,9 +18,12 @@
 #include "Point.hpp"
 
 class Sphere: public Object {
-    double radius;
+    double radius = 1;
+    int nStack = 50, nSector = 50;
     Point center;
 public:
+    Sphere() = default;
+    Sphere(double radius, int nStack, int nSector);
     void draw() override;
     void drawScreen() override;
 };
