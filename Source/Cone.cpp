@@ -41,13 +41,18 @@ void Cone::drawScreen() {
 
                 double x = cosTheta;
                 double y = sinTheta;
-                
-                glNormal3d(x, y, 0);
-                //glTexCoord2d(1.0 / nSlice * j, 1.0 / nStack * (i + 1));
-                glVertex3f(radius * x, radius * y, z2);
+                double nz = radius / height;
+                double normLength = sqrt(x * x + y * y + nz * nz);
 
-                //glTexCoord2d(1.0 / nSlice * j, 1.0 / nStack * i);
-                glVertex3f(radius * x, radius * y, z1);
+                double radius1 = (1 - ((double) i / nStack)) * radius;
+                double radius2 = (1 - ((double) (i + 1) / nStack)) * radius;
+
+                glNormal3d(x / normLength, y / normLength, nz / normLength);
+                glTexCoord2d(1.0 / nSlice * j, 1.0 / nStack * (i + 1));
+                glVertex3f(radius2 * x, radius2 * y, z2);
+
+                glTexCoord2d(1.0 / nSlice * j, 1.0 / nSlice * i);
+                glVertex3f(radius1 * x, radius1 * y, z1);
             }
         glEnd();
     }
@@ -66,7 +71,7 @@ void Cone::drawScreen() {
             double y = sinTheta;
 
             glNormal3d(0, 0, -1);
-            //glTexCoord2d(1.0 / nSlice * j, 1.0 / nStack * (i + 1));
+            //glTexCoord2d(0.5 * (1 + x * radius), 0.5 * (1 + y * radius));
             glVertex3f(radius * x, radius * y, 0);
         }
     glEnd();
