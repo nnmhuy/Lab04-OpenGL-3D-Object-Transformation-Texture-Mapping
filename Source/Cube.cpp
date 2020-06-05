@@ -17,7 +17,7 @@ void Cube::draw() {
 
 void Cube::drawScreen() {
     glLoadIdentity(); // Reset the model-view matrix
-    glTranslatef(-2.0f, 2.0f, -7.0f); // Move right and into the screen
+    glTranslatef(-3.0f, 1.0f, -7.0f); // Move right and into the screen
     glScalef(0.5f, 0.5f, 0.5f);
     glRotatef(angle, 1.0f, 1.0f, 1.0f); // Rotate about (1,1,1)-axis
 

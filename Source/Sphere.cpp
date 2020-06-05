@@ -21,7 +21,7 @@ void Sphere::draw() {
 
 void Sphere::drawScreen() {
     glLoadIdentity(); // Reset the model-view matrix
-    glTranslatef(0.0f, 2.0f, -7.0f); // Move into the screen
+    glTranslatef(-1.0f, 1.0f, -7.0f); // Move into the screen
     glScalef(0.5f, 0.5f, 0.5f);
     glRotatef(angle, 1.0f, 1.0f, 1.0f); // Rotate about (1,1,1)-axis
 

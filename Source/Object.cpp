@@ -11,6 +11,7 @@
 #include "Cube.hpp"
 #include "Cylinder.hpp"
 #include "Cone.hpp"
+#include "Disk.hpp"
 
 Object* Object::constructObject(int type) {
     switch (type) {
@@ -23,8 +24,8 @@ Object* Object::constructObject(int type) {
             return new Cylinder();
         case 3:
             return new Cone();
-        // case 4:
-        //     return new Star();
+        case 4:
+            return new Disk();
         // case 5:
         //     return new RegularPentagon();
         // case 6:

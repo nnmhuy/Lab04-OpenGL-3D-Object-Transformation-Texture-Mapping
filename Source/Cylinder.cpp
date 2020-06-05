@@ -22,7 +22,7 @@ void Cylinder::draw() {
 
 void Cylinder::drawScreen() {
     glLoadIdentity(); // Reset the model-view matrix
-    glTranslatef(2.0f, 2.0f, -7.0f); // Move right and into the screen
+    glTranslatef(1.0f, 1.0f, -7.0f); // Move right and into the screen
     glScalef(0.5f, 0.5f, 0.5f);
     // glRotatef(angle, 1.0f, 1.0f, 1.0f);
     glRotatef(angle, 0.0f, 1.0f, 0.0f);
