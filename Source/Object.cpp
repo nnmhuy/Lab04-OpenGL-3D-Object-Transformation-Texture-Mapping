@@ -14,6 +14,7 @@
 #include "Disk.hpp"
 #include "Torus.hpp"
 #include "Hyperboloid.hpp"
+#include "Paraboloid.hpp"
 
 Object* Object::constructObject(int type) {
     switch (type) {
@@ -31,6 +32,8 @@ Object* Object::constructObject(int type) {
             return new Torus();
         case 6:
             return new Hyperboloid();
+        case 7:
+            return new Paraboloid();
         default:
             return NULL;
     }
