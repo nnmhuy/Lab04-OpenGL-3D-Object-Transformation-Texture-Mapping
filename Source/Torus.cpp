@@ -56,7 +56,7 @@ void Torus::drawScreen() {
             double z1 = sinAlpha * tubeRadius;
 
             glNormal3d(centerCos1 * cosAlpha, centerSin1 * cosAlpha, sinAlpha);
-            //  glTexCoord2d(s1, t);
+             glTexCoord2d(s1, t);
             glVertex3d(x1, y1, z1);
 
             double x2 = centerCos2 * (centerRadius + tubeRadius * cosAlpha);
@@ -64,7 +64,7 @@ void Torus::drawScreen() {
             double z2 = sinAlpha * tubeRadius;
 
             glNormal3d(centerCos2 * cosAlpha, centerSin2 * cosAlpha, sinAlpha);
-            //  glTexCoord2d(s2, t);
+             glTexCoord2d(s2, t);
             glVertex3d(x2, y2, z2);
         }
         glEnd();

@@ -45,10 +45,10 @@ void Cylinder::drawScreen() {
                 double y = sinTheta;
                 
                 glNormal3d(x, y, 0);
-                //glTexCoord2d(1.0 / nSlice * j, 1.0 / nStack * (i + 1));
+                glTexCoord2d(1.0 / nSlice * j, 1.0 / nStack * (i + 1));
                 glVertex3f(radius * x, radius * y, z2);
 
-                //glTexCoord2d(1.0 / nSlice * j, 1.0 / nStack * i);
+                glTexCoord2d(1.0 / nSlice * j, 1.0 / nStack * i);
                 glVertex3f(radius * x, radius * y, z1);
             }
         glEnd();
@@ -57,7 +57,7 @@ void Cylinder::drawScreen() {
     // draw top side
     glBegin(GL_TRIANGLE_FAN);
         glNormal3d(0, 0, 1);
-        //glTexCoord2d(1.0 / nSlice * j, 1.0 / nStack * (i + 1));
+        // glTexCoord2d(1.0 / nSlice * j, 1.0 / nStack * (i + 1));
         glVertex3f(0, 0, height);
         for (int i = 0; i <= nSlice; ++i) {
             double theta = (2 * PI) / nSlice * i;
@@ -68,7 +68,7 @@ void Cylinder::drawScreen() {
             double y = sinTheta;
 
             glNormal3d(0, 0, 1);
-            //glTexCoord2d(0.5 * (1 + x * radius), 0.5 * (1 + y * radius));
+            glTexCoord2d(0.5 * (1 + x * radius), 0.5 * (1 + y * radius));
             glVertex3f(radius * x, radius * y, height);
         }
     glEnd();
@@ -87,7 +87,7 @@ void Cylinder::drawScreen() {
             double y = sinTheta;
 
             glNormal3d(0, 0, -1);
-            //glTexCoord2d(0.5 * (1 + x * radius), 0.5 * (1 + y * radius));
+            glTexCoord2d(0.5 * (1 + x * radius), 0.5 * (1 + y * radius));
             glVertex3f(radius * x, radius * y, 0);
         }
     glEnd();

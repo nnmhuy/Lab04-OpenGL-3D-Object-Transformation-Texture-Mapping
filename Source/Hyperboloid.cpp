@@ -49,10 +49,10 @@ void Hyperboloid::drawScreen() {
                 double y = b * sinTheta;
                 
                 glNormal3d(x, y, 0);
-                //glTexCoord2d(1.0 / nSlice * j, 1.0 / nStack * (i + 1));
+                glTexCoord2d(1.0 / nSlice * j, 1.0 / nStack * (i + 1));
                 glVertex3f(C2 * x, C2 * y, z2);
 
-                //glTexCoord2d(1.0 / nSlice * j, 1.0 / nStack * i);
+                glTexCoord2d(1.0 / nSlice * j, 1.0 / nStack * i);
                 glVertex3f(C1 * x, C1 * y, z1);
             }
         glEnd();
@@ -74,7 +74,7 @@ void Hyperboloid::drawScreen() {
             double y = b * sinTheta;
 
             glVertex3f(C * x, C * y, height / 2);
-            //glTexCoord2d(0.5 * (1 + x * radius), 0.5 * (1 + y * radius));
+            glTexCoord2d(0.5 * (1 + cosTheta), 0.5 * (1 + sinTheta));
         }
     glEnd();
 
@@ -95,7 +95,7 @@ void Hyperboloid::drawScreen() {
         double y = b * sinTheta;
 
         glVertex3f(C * x, C * y, -height / 2);
-        //glTexCoord2d(0.5 * (1 + x * radius), 0.5 * (1 + y * radius));
+        glTexCoord2d(0.5 * (1 + cosTheta), 0.5 * (1 + sinTheta));
     }
     glEnd();
 }

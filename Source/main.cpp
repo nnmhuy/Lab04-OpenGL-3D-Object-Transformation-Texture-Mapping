@@ -71,6 +71,13 @@ void SetupRC(void) {
     glDepthFunc(GL_LEQUAL); // Set the type of depth-test
     glShadeModel(GL_SMOOTH); // Enable smooth shading
     glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST); // Nice perspective corrections
+
+    glColor3f(1, 1, 1);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); // (Actually, this one is the default)
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glEnable(GL_TEXTURE_2D);
 }
 
 // Called by GLUT library when the window has changed size
@@ -124,7 +131,7 @@ vector<Object*> Object::objects;
 
 int main(int argc, char * argv[]) {
     glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_DOUBLE);
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH);
     glutInitWindowSize(Config::ORIGINAL_WIDTH, Config::ORIGINAL_HEIGHT);
     glutCreateWindow("3D Object Transformation");
     

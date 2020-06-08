@@ -71,7 +71,7 @@ void Cone::drawScreen() {
             double y = sinTheta;
 
             glNormal3d(0, 0, -1);
-            //glTexCoord2d(0.5 * (1 + x * radius), 0.5 * (1 + y * radius));
+            glTexCoord2d(0.5 * (1 + x * radius), 0.5 * (1 + y * radius));
             glVertex3f(radius * x, radius * y, 0);
         }
     glEnd();

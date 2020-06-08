@@ -46,11 +46,11 @@ void Sphere::drawScreen() {
                 double z2 = sinLat2;
 
                 glNormal3d(x2, y2, z2);
-                // glTexCoord2d(1.0 / nSector * j, 1.0 / nStack * (i + 1));
+                glTexCoord2d(1.0 / nSector * j, 1.0 / nStack * (i + 1));
                 glVertex3d(radius * x2, radius * y2, radius * z2);
 
                 glNormal3d(x1, y1, z1);
-                // glTexCoord2d(1.0 / nSector * j, 1.0 / nStack * i);
+                glTexCoord2d(1.0 / nSector * j, 1.0 / nStack * i);
                 glVertex3d(radius * x1, radius * y1, radius * z1);
             }
         glEnd();

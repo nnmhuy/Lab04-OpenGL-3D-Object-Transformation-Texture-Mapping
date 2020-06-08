@@ -46,10 +46,10 @@ void Paraboloid::drawScreen() {
                 double y = b * sinTheta;
                 
                 glNormal3d(x, y, 0);
-                //glTexCoord2d(1.0 / nSlice * j, 1.0 / nStack * (i + 1));
+                glTexCoord2d(1.0 / nSlice * j, 1.0 / nStack * (i + 1));
                 glVertex3f(z2 * x, z2 * y, z2 * z2);
 
-                //glTexCoord2d(1.0 / nSlice * j, 1.0 / nStack * i);
+                glTexCoord2d(1.0 / nSlice * j, 1.0 / nStack * i);
                 glVertex3f(z1 * x, z1 * y, z1 * z1);
             }
         glEnd();
@@ -70,7 +70,7 @@ void Paraboloid::drawScreen() {
         double y = b * sinTheta;
 
         glVertex3f(height * x, height * y, height);
-        //glTexCoord2d(0.5 * (1 + x * radius), 0.5 * (1 + y * radius));
+        glTexCoord2d(0.5 * (1 + cosTheta), 0.5 * (1 + sinTheta));
     }
     glEnd();
 }

@@ -18,7 +18,7 @@
 #include "Point.hpp"
 
 class Torus: public Object {
-    double innerRadius = 0.75, outterRadius = 1;
+    double innerRadius = 0.5, outterRadius = 1;
     int nSlice = 50, nRing = 50;
     Point center;
 public:

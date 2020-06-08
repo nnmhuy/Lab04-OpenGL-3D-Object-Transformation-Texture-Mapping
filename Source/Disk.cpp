@@ -44,10 +44,10 @@ void Disk::drawScreen() {
                 double y = sinTheta;
 
                 glNormal3d(0, 0, -1);
-                //glTexCoord2d(0.5 * (1 + x * radius1), 0.5 * (1 + y * radius1));
+                glTexCoord2d(0.5 * (1 + x * radius1), 0.5 * (1 + y * radius1));
                 glVertex3f(radius1 * x, radius1 * y, 0);
 
-                //glTexCoord2d(0.5 * (1 + x * radius2), 0.5 * (1 + y * radius2));
+                glTexCoord2d(0.5 * (1 + x * radius2), 0.5 * (1 + y * radius2));
                 glVertex3f(radius2 * x, radius2 * y, 0);
                 
             }
