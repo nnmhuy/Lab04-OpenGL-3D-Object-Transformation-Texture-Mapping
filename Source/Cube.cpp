@@ -19,7 +19,8 @@ void Cube::drawScreen() {
     glLoadIdentity(); // Reset the model-view matrix
     glTranslatef(-3.0f, 1.0f, -7.0f); // Move right and into the screen
     glScalef(0.5f, 0.5f, 0.5f);
-    glRotatef(angle, 1.0f, 1.0f, 1.0f); // Rotate about (1,1,1)-axis
+    glRotatef(angle, 0.0f, 1.0f, 0.0f); // Rotate about (1,1,1)-axis
+    // glRotatef(20, 1.0f, 0.0f, 0.0f); // Rotate about (1,1,1)-axis
 
     // glEnable(GL_TEXTURE_2D);
     // glColor3f(1.0f,1.0f,1.0f); // White

@@ -8,7 +8,7 @@
 
 #include "Disk.hpp"
 
-Disk::Disk(int radius, int nSlice, int nRing) {
+Disk::Disk(double radius, int nSlice, int nRing) {
     this->radius = radius;
     this->nSlice = nSlice;
     this->nRing = nRing;
@@ -23,7 +23,6 @@ void Disk::drawScreen() {
     glLoadIdentity(); // Reset the model-view matrix
     glTranslatef(-3.0f, -1.0f, -7.0f); // Move right and into the screen
     glScalef(0.5f, 0.5f, 0.5f);
-    // glRotatef(angle, 1.0f, 1.0f, 1.0f);
     glRotatef(angle, 0.0f, 1.0f, 0.0f);
 
 

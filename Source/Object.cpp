@@ -12,6 +12,7 @@
 #include "Cylinder.hpp"
 #include "Cone.hpp"
 #include "Disk.hpp"
+#include "Torus.hpp"
 
 Object* Object::constructObject(int type) {
     switch (type) {
@@ -26,8 +27,8 @@ Object* Object::constructObject(int type) {
             return new Cone();
         case 4:
             return new Disk();
-        // case 5:
-        //     return new RegularPentagon();
+        case 5:
+            return new Torus();
         // case 6:
         //     return new RegularHexagon();
         default:

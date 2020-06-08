@@ -8,7 +8,7 @@
 
 #include "Cylinder.hpp"
 
-Cylinder::Cylinder(int radius, int height, int nSlice, int nStack) {
+Cylinder::Cylinder(double radius, double height, int nSlice, int nStack) {
     this->radius = radius;
     this->height = height;
     this->nSlice = nSlice;
@@ -26,6 +26,8 @@ void Cylinder::drawScreen() {
     glScalef(0.5f, 0.5f, 0.5f);
     // glRotatef(angle, 1.0f, 1.0f, 1.0f);
     glRotatef(angle, 0.0f, 1.0f, 0.0f);
+    // glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
+    // glRotatef(20.0f, 1.0f, 0.0f, 0.0f);
 
 
     glColor3f(1.0f, 1.0f, 1.0f);
