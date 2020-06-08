@@ -7,6 +7,11 @@
 //
 
 #include "Cylinder.hpp"
+#include "Texture.hpp"
+
+Cylinder::Cylinder(int textureIndex) : Object(textureIndex) {
+    
+}
 
 Cylinder::Cylinder(double radius, double height, int nSlice, int nStack) {
     this->radius = radius;
@@ -29,8 +34,7 @@ void Cylinder::drawScreen() {
     // glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
     // glRotatef(20.0f, 1.0f, 0.0f, 0.0f);
 
-
-    glColor3f(1.0f, 1.0f, 1.0f);
+    glBindTexture(GL_TEXTURE_2D, Texture::textureList[textureIndex]);
     // draw cylinder
     for (int i = 0; i < nStack; ++i) {
         double z1 = height / nStack * i;
@@ -57,7 +61,7 @@ void Cylinder::drawScreen() {
     // draw top side
     glBegin(GL_TRIANGLE_FAN);
         glNormal3d(0, 0, 1);
-        // glTexCoord2d(1.0 / nSlice * j, 1.0 / nStack * (i + 1));
+        glTexCoord2d(0.5, 0.5);
         glVertex3f(0, 0, height);
         for (int i = 0; i <= nSlice; ++i) {
             double theta = (2 * PI) / nSlice * i;
@@ -76,7 +80,7 @@ void Cylinder::drawScreen() {
     // draw bottom side
     glBegin(GL_TRIANGLE_FAN);
         glNormal3d(0, 0, -1);
-        //glTexCoord2d(1.0 / nSlice * j, 1.0 / nStack * (i + 1));
+        glTexCoord2d(0.5, 0.5);
         glVertex3f(0, 0, 0);
         for (int i = 0; i <= nSlice; ++i) {
             double theta = (2 * PI) / nSlice * i;

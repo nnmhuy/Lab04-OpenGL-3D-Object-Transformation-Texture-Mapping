@@ -23,6 +23,7 @@ class Torus: public Object {
     Point center;
 public:
     Torus() = default;
+    Torus(int textureIndex);
     Torus(double innerRadius, double outterRadius, int nSlice, int nRing);
     void draw() override;
     void drawScreen() override;

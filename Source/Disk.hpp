@@ -23,6 +23,7 @@ class Disk: public Object {
     Point center;
 public:
     Disk() = default;
+    Disk(int textureIndex);
     Disk(double radius, int nSlice, int nRing);
     void draw() override;
     void drawScreen() override;

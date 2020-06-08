@@ -24,6 +24,7 @@ class Paraboloid: public Object {
     Point center;
 public:
     Paraboloid() = default;
+    Paraboloid(int textureIndex);
     Paraboloid(double a, double b, double height, int nSlice, int nStack);
     void draw() override;
     void drawScreen() override;

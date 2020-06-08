@@ -6,6 +6,7 @@
 //  Copyright © 2020 Huy Nguyen Ngoc Minh. All rights reserved.
 //
 
+#include <stdlib.h> /* srand, rand */
 #include "Object.hpp"
 #include "Sphere.hpp"
 #include "Cube.hpp"
@@ -16,24 +17,29 @@
 #include "Hyperboloid.hpp"
 #include "Paraboloid.hpp"
 
+Object::Object(int textureIndex) {
+    this->textureIndex = textureIndex;
+}
+
 Object* Object::constructObject(int type) {
+    int textureIndex = type;
     switch (type) {
         case 0:
-            return new Sphere();
+            return new Sphere(textureIndex);
         case 1:
-            return new Cube();
+            return new Cube(textureIndex);
         case 2:
-            return new Cylinder();
+            return new Cylinder(textureIndex);
         case 3:
-            return new Cone();
+            return new Cone(textureIndex);
         case 4:
-            return new Disk();
+            return new Disk(textureIndex);
         case 5:
-            return new Torus();
+            return new Torus(textureIndex);
         case 6:
-            return new Hyperboloid();
+            return new Hyperboloid(textureIndex);
         case 7:
-            return new Paraboloid();
+            return new Paraboloid(textureIndex);
         default:
             return NULL;
     }

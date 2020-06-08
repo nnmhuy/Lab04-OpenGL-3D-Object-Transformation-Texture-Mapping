@@ -7,6 +7,7 @@
 //
 
 #include "Cone.hpp"
+#include "Texture.hpp"
 
 Cone::Cone(int radius, int height, int nSlice, int nStack) {
     this->radius = radius;
@@ -15,10 +16,11 @@ Cone::Cone(int radius, int height, int nSlice, int nStack) {
     this->nStack = nStack;
 }
 
-void Cone::draw() {
-
+Cone::Cone(int textureIndex) : Object(textureIndex){
 }
 
+void Cone::draw(){
+}
 
 void Cone::drawScreen() {
     glLoadIdentity(); // Reset the model-view matrix
@@ -27,8 +29,7 @@ void Cone::drawScreen() {
     // glRotatef(angle, 1.0f, 1.0f, 1.0f);
     glRotatef(angle, 0.0f, 1.0f, 0.0f);
 
-
-    glColor3f(1.0f, 1.0f, 1.0f);
+    glBindTexture(GL_TEXTURE_2D, Texture::textureList[textureIndex]);
     // draw Cone
     for (int i = 0; i < nStack; ++i) {
         double z1 = height / nStack * i;
@@ -60,7 +61,7 @@ void Cone::drawScreen() {
     // draw bottom side
     glBegin(GL_TRIANGLE_FAN);
         glNormal3d(0, 0, -1);
-        //glTexCoord2d(1.0 / nSlice * j, 1.0 / nStack * (i + 1));
+        glTexCoord2d(0.5, 0.5);
         glVertex3f(0, 0, 0);
         for (int i = 0; i <= nSlice; ++i) {
             double theta = (2 * PI) / nSlice * i;

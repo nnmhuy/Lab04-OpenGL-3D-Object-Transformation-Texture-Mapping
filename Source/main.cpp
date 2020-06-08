@@ -10,45 +10,20 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <stdlib.h> /* srand, rand */
+#include <time.h>   /* time */
 
 #include <GL/glut.h>
-#include <SOIL/SOIL.h>
 
 #include "Config.hpp"
+#include "Texture.hpp"
 #include "Object.hpp"
 #include "Point.hpp"
 
 using namespace std;
 
 GLfloat anglePyramid = 0.0f; // Rotational angle for pyramid [NEW]
-int refreshMills = 15; // refresh interval in milliseconds [NEW]
-GLuint texture[1]; // Storage For One Texture ( NEW )
-
-int loadGLTextures() // Load Bitmaps And Convert To Textures
-{
-    cout << "Load texture" << endl;
-    /* load an image file directly as a new OpenGL texture */
-    texture[0] = SOIL_load_OGL_texture
-    (
-    "./Data/earth2048.bmp",
-    SOIL_LOAD_AUTO,
-    SOIL_CREATE_NEW_ID,
-    SOIL_FLAG_INVERT_Y
-    );
-
-    if(texture[0] == 0) {
-        cout << "Load texture FAIL" << endl;
-        return false;
-    }
-        
-    cout << "Load texture SUCCESS" << endl;
-    // Typical Texture Generation Using Data From The Bitmap
-    glBindTexture(GL_TEXTURE_2D, texture[0]);
-    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
-
-    return true;
-}
+int refreshMills = 10; // refresh interval in milliseconds [NEW]
 
 void RenderScreen(void) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear color and depth buffers
@@ -108,7 +83,6 @@ void timer(int value) {
 }
 
 void initObjectList() {
-    // new cube
     Object::objects.push_back(Object::constructObject(0));
     Object::objects.push_back(Object::constructObject(1));
     Object::objects.push_back(Object::constructObject(2));
@@ -128,15 +102,18 @@ void initObjectList() {
 int Config::WIDTH = 0;
 int Config::HEIGHT = 0;
 vector<Object*> Object::objects;
+vector<GLuint> Texture::textureList;
 
 int main(int argc, char * argv[]) {
+    srand(time(NULL));
+
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH);
     glutInitWindowSize(Config::ORIGINAL_WIDTH, Config::ORIGINAL_HEIGHT);
     glutCreateWindow("3D Object Transformation");
     
     initObjectList();
-    loadGLTextures();
+    Texture::loadTexture();
     SetupRC();
 
     glutReshapeFunc(ChangeSize);

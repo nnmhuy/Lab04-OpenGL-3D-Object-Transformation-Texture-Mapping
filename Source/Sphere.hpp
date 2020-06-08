@@ -23,6 +23,7 @@ class Sphere: public Object {
     Point center;
 public:
     Sphere() = default;
+    Sphere(int textureIndex);
     Sphere(double radius, int nStack, int nSector);
     void draw() override;
     void drawScreen() override;

@@ -7,6 +7,11 @@
 //
 
 #include "Disk.hpp"
+#include "Texture.hpp"
+
+Disk::Disk(int textureIndex) : Object(textureIndex) {
+    
+}
 
 Disk::Disk(double radius, int nSlice, int nRing) {
     this->radius = radius;
@@ -25,9 +30,7 @@ void Disk::drawScreen() {
     glScalef(0.5f, 0.5f, 0.5f);
     glRotatef(angle, 0.0f, 1.0f, 0.0f);
 
-
-    glColor3f(1.0f, 1.0f, 1.0f);
-
+    glBindTexture(GL_TEXTURE_2D, Texture::textureList[textureIndex]);
     // draw upper face disk
     glNormal3d(0, 0, 1);
     for (int i = 0; i < nRing; ++i) {

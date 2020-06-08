@@ -8,6 +8,11 @@
 
 #include <math.h>
 #include "Sphere.hpp"
+#include "Texture.hpp"
+
+Sphere::Sphere(int textureIndex) : Object(textureIndex) {
+    
+}
 
 Sphere::Sphere(double radius, int nStack, int nSector) {
     this->radius = radius;
@@ -25,7 +30,7 @@ void Sphere::drawScreen() {
     glScalef(0.5f, 0.5f, 0.5f);
     glRotatef(angle, 1.0f, 1.0f, 1.0f); // Rotate about (1,1,1)-axis
 
-
+    glBindTexture(GL_TEXTURE_2D, Texture::textureList[textureIndex]);
     for (int i = 0; i < nStack; ++i) {
         double latitude1 = (PI / nStack) * i - PI / 2.0;
         double latitude2 = (PI / nStack) * (i + 1) - PI / 2.0;

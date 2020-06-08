@@ -7,6 +7,11 @@
 //
 
 #include "Torus.hpp"
+#include "Texture.hpp"
+
+Torus::Torus(int textureIndex) : Object(textureIndex) {
+    
+}
 
 Torus::Torus(double innerRadius, double outterRadius, int nSlice, int nRing) {
     this->innerRadius = innerRadius;
@@ -28,7 +33,7 @@ void Torus::drawScreen() {
     // glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
     // glRotatef(20.0f, 1.0f, 0.0f, 0.0f);
 
-
+    glBindTexture(GL_TEXTURE_2D, Texture::textureList[textureIndex]);
     double centerRadius = (innerRadius + outterRadius) / 2.0;
     double tubeRadius = outterRadius - centerRadius;
 

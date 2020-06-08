@@ -24,6 +24,7 @@ class Hyperboloid: public Object {
     Point center;
 public:
     Hyperboloid() = default;
+    Hyperboloid(int textureIndex);
     Hyperboloid(double a, double b, double c, double height, int nSlice, int nStack);
     void draw() override;
     void drawScreen() override;

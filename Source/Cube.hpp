@@ -19,6 +19,7 @@
 
 class Cube: public Object {
 public:
+    Cube(int textureIndex);
     void draw() override;
     void drawScreen() override;
 };

@@ -24,6 +24,7 @@ class Cone: public Object {
     Point center;
 public:
     Cone() = default;
+    Cone(int textureIndex);
     Cone(int radius, int height, int nSlice, int nStack);
     void draw() override;
     void drawScreen() override;

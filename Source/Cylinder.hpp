@@ -24,6 +24,7 @@ class Cylinder: public Object {
     Point center;
 public:
     Cylinder() = default;
+    Cylinder(int textureIndex);
     Cylinder(double radius, double height, int nSlice, int nStack);
     void draw() override;
     void drawScreen() override;

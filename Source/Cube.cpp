@@ -7,11 +7,12 @@
 //
 
 #include "Cube.hpp"
+#include "Texture.hpp"
 
-void Cube::draw() {
-    cout << "Drawing Cube" << endl;
-    
-    
+Cube::Cube(int textureIndex) : Object(textureIndex){
+}
+
+void Cube::draw() {  
 }
 
 
@@ -22,9 +23,7 @@ void Cube::drawScreen() {
     glRotatef(angle, 0.0f, 1.0f, 0.0f); // Rotate about (1,1,1)-axis
     // glRotatef(20, 1.0f, 0.0f, 0.0f); // Rotate about (1,1,1)-axis
 
-    // glEnable(GL_TEXTURE_2D);
-    // glColor3f(1.0f,1.0f,1.0f); // White
-    // glBindTexture(GL_TEXTURE_2D, texture[0]); // Map your texture here
+    glBindTexture(GL_TEXTURE_2D, Texture::textureList[textureIndex]);
 
     glBegin(GL_QUADS);
         // Front Face
