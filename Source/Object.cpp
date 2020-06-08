@@ -13,6 +13,7 @@
 #include "Cone.hpp"
 #include "Disk.hpp"
 #include "Torus.hpp"
+#include "Hyperboloid.hpp"
 
 Object* Object::constructObject(int type) {
     switch (type) {
@@ -20,7 +21,6 @@ Object* Object::constructObject(int type) {
             return new Sphere();
         case 1:
             return new Cube();
-            break;
         case 2:
             return new Cylinder();
         case 3:
@@ -29,8 +29,8 @@ Object* Object::constructObject(int type) {
             return new Disk();
         case 5:
             return new Torus();
-        // case 6:
-        //     return new RegularHexagon();
+        case 6:
+            return new Hyperboloid();
         default:
             return NULL;
     }
